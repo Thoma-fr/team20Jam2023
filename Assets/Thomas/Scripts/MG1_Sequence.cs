@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public enum BaloonType{
+public enum MG1_BaloonType
+{
     Red,
     Green, 
     Blue,
@@ -13,21 +14,9 @@ public class MG1_Sequence : MonoBehaviour
 {
 
     Color[] colorAvalable = new Color[] {Color.red,Color.green,Color.blue,Color.yellow };
-    [SerializeField] private GameObject baloonPrefab= null;
-    [SerializeField] private List<GameObject> spawnedObject = new List<GameObject>();
+    [SerializeField] private GameObject baloonParentPrefab= null;
+    public List<GameObject> spawnedObject = new List<GameObject>();
     [SerializeField] private List<Color> ColorSequence = new List<Color>();
-
-    //la ou les couleurs voulus
-    /*
-     ça fais spawn des objet qui contiennent les balons, ces objet se focus seulement si le précédant a été validé,
-    
-    une liste d'object baloon parent, balon parent contient les balon associé, si la couleur correspond a l'input alors le parent éclate
-    l'enfant 
-
-
-
-     */
-
 
     public int NumberToSpawn{get; set;}
     public int speed { get; set;}
@@ -35,15 +24,34 @@ public class MG1_Sequence : MonoBehaviour
     // 1/3 trois balons spawn en même temps
     void Start()
     {
-        for (int i = 0; i < NumberToSpawn; i++) 
-        {
-            var newballon = Instantiate(baloonPrefab, transform.position, transform.rotation);
-            spawnedObject.Add(newballon);
-        }
+        StartCoroutine(spawndelay());
 
     }
     void Update()
     {
+        if (Input.GetKeyUp(KeyCode.UpArrow))
+            spawnedObject[0].GetComponent<MG1_BaloonParent>().Checkcolor(MG1_BaloonType.Red);
+        else if(Input.GetKeyUp(KeyCode.DownArrow))
+            spawnedObject[0].GetComponent<MG1_BaloonParent>().Checkcolor(MG1_BaloonType.Blue);
+        else if( Input.GetKeyUp(KeyCode.LeftArrow))
+            spawnedObject[0].GetComponent<MG1_BaloonParent>().Checkcolor(MG1_BaloonType.Yellow);
+        else if (Input.GetKeyUp(KeyCode.RightArrow))
+            spawnedObject[0].GetComponent<MG1_BaloonParent>().Checkcolor(MG1_BaloonType.Green);
+    }
+    public void SpawnBaloonParent()
+    {
+        NumberToSpawn=Random.Range(1,4);
+
+            var newballonParent = Instantiate(baloonParentPrefab, transform);
+            spawnedObject.Add(newballonParent);
+            newballonParent.GetComponent<MG1_BaloonParent>().spawnBalon(NumberToSpawn);
+
+    }
+    private IEnumerator spawndelay()
+    {
+        SpawnBaloonParent();
+        yield return new WaitForSeconds(3);
         
+        StartCoroutine(spawndelay());
     }
 }
