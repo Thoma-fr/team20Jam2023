@@ -2,6 +2,13 @@ using UnityEngine;
 using TMPro;
 using DG.Tweening;
 
+public enum GameColor
+{
+    Red,
+    Green,
+    Blue,
+    Yellow
+};
 public class GameManager : MonoBehaviour
 {
     public int p1Score {  get; set; }
