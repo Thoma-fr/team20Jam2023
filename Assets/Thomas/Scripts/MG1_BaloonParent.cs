@@ -1,15 +1,17 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-
+using TMPro;
 public class MG1_BaloonParent : MonoBehaviour
 {
     [SerializeField] private GameObject baloonPrefab;
     [SerializeField] private List<Vector2> spawnPoint = new List<Vector2>();
+    public MG1_Sequence spawner {  get; set; }
     private void Start()
     {
         //spawnBalon(3);newBaloon.GetComponent<MG1_Baloon>().color = (MG1_BaloonType)Random.Range(0, 3);
+        GetComponent<Rigidbody2D>().gravityScale = -spawner.speed;
     }
     
     public void Checkcolor(MG1_BaloonType colorchossen)
@@ -22,19 +24,32 @@ public class MG1_BaloonParent : MonoBehaviour
                 t.GetComponent<MG1_Baloon>().Explode();
                 Debug.Log("baloon destroyed");
                 hasFoundColor = true;
+                spawner.numberPoped++;
                 break;
             }
         }
         if (!hasFoundColor)
+        {
             Debug.Log("Stunt");
-
-
+            spawner.StuntTrigger();
+            ChangeOpacity();
+        }
+    }
+    private void ChangeOpacity()
+    {
+        foreach (Transform t in transform)
+        {
+            Sequence mySequence = DOTween.Sequence();
+            mySequence.Append((t.GetComponent<SpriteRenderer>().DOFade(0.5f,spawner.stuntTime / 3)));
+            mySequence.AppendInterval(spawner.stuntTime / 3);
+            mySequence.Append((t.GetComponent<SpriteRenderer>().DOFade(1, spawner.stuntTime / 3)));
+        }
     }
     private void Update()
     {
         if (transform.childCount == 0)
         {
-            transform.parent.GetComponent<MG1_Sequence>().spawnedObject.Remove(gameObject);
+            spawner.spawnedObject.Remove(gameObject);
             Destroy(gameObject);
         }
     }
@@ -69,6 +84,19 @@ public class MG1_BaloonParent : MonoBehaviour
             spawnPoint.Add(transform.position);
             spawnPoint.Add(new Vector2(transform.position.x - 1.5f, transform.position.y));
             spawnPoint.Add(new Vector2(transform.position.x + 1.5f, transform.position.y));
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("spike"))
+        {
+            spawner.spawnedObject.Remove(gameObject);
+            //foreach(GameObject go in spawner.spawnedObject)
+            //{
+            //    Destroy(go);
+            //}
+            //spawner.spawnedObject.Clear();
+            Destroy(gameObject);
         }
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 public class MG1_Baloon : MonoBehaviour
 {
+
     public MG1_BaloonType color { get;  set; }
     public int lives = 1;
     public TextMeshPro livestex;
@@ -11,7 +12,8 @@ public class MG1_Baloon : MonoBehaviour
     {   if (lives > 1)
             livestex.text = lives.ToString();
         else
-            livestex.text = "";
+            livestex.gameObject.SetActive(false);
+
         var sprite=GetComponent<SpriteRenderer>();
         switch(color)
         {
@@ -29,7 +31,9 @@ public class MG1_Baloon : MonoBehaviour
     public void Explode()
     {
         lives--;
-        if(lives <= 0)
+            livestex.text = lives.ToString();
+        if (lives <= 0)
             Destroy(gameObject);
     }
+
 }
