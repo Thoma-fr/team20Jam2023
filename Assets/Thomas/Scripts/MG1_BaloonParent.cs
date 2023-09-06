@@ -17,6 +17,7 @@ public class MG1_BaloonParent : MonoBehaviour
     public void Checkcolor(MG1_BaloonType colorchossen)
     {
         bool hasFoundColor=false;
+        spawner.GunAnim();
         foreach (Transform t in transform)
         {
             if(t.GetComponent<MG1_Baloon>().color == colorchossen)
@@ -76,14 +77,14 @@ public class MG1_BaloonParent : MonoBehaviour
             spawnPoint.Add(transform.position);
         else if (number == 2)
         {
-            spawnPoint.Add(new Vector2(transform.position.x - 1.5f, transform.position.y));
-            spawnPoint.Add(new Vector2(transform.position.x + 1.5f, transform.position.y));
+            spawnPoint.Add(new Vector2(transform.position.x - 2f, transform.position.y));
+            spawnPoint.Add(new Vector2(transform.position.x + 2f, transform.position.y));
         }
         else if (number == 3)
         {
             spawnPoint.Add(transform.position);
-            spawnPoint.Add(new Vector2(transform.position.x - 1.5f, transform.position.y));
-            spawnPoint.Add(new Vector2(transform.position.x + 1.5f, transform.position.y));
+            spawnPoint.Add(new Vector2(transform.position.x - 2f, transform.position.y));
+            spawnPoint.Add(new Vector2(transform.position.x + 2f, transform.position.y));
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)

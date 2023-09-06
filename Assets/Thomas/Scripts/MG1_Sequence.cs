@@ -1,7 +1,8 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UIElements;
 
 public enum MG1_BaloonType
 {
@@ -12,6 +13,8 @@ public enum MG1_BaloonType
 };
 public class MG1_Sequence : MonoBehaviour
 {
+    [SerializeField] private GameObject gun;
+    private Vector3 gunPosition;
     [SerializeField,Tooltip("le numero du joueur(player 1 ou 2)"),Range(1,2)] private int playerID;
     [SerializeField] private GameObject baloonParentPrefab= null;
     //[SerializeField, Tooltip("nombre que tu veux fair spawn")] private int numberToPop;
@@ -32,13 +35,14 @@ public class MG1_Sequence : MonoBehaviour
     // 1/3 trois balons spawn en même temps
     void Start()
     {
+        gunPosition=gun.transform.position;
         StartCoroutine(spawndelay());
 
     }
     void Update()
     {
         SpawnSpeed -= GameManager.instance.currentTime * acceleration*Time.deltaTime;
-        if (canInput&& spawnedObject.Count>0)
+        if (canInput&& spawnedObject.Count>0 && playerID==2)
         {
             if (Input.GetKeyUp(KeyCode.UpArrow))
                 spawnedObject[0].GetComponent<MG1_BaloonParent>().Checkcolor(MG1_BaloonType.Red);
@@ -47,6 +51,17 @@ public class MG1_Sequence : MonoBehaviour
             else if (Input.GetKeyUp(KeyCode.LeftArrow))
                 spawnedObject[0].GetComponent<MG1_BaloonParent>().Checkcolor(MG1_BaloonType.Yellow);
             else if (Input.GetKeyUp(KeyCode.RightArrow))
+                spawnedObject[0].GetComponent<MG1_BaloonParent>().Checkcolor(MG1_BaloonType.Green);
+        }
+        if (canInput && spawnedObject.Count > 0 && playerID == 1)
+        {
+            if (Input.GetKeyUp(KeyCode.Z)|| Input.GetKeyUp(KeyCode.W))
+                spawnedObject[0].GetComponent<MG1_BaloonParent>().Checkcolor(MG1_BaloonType.Red);
+            else if (Input.GetKeyUp(KeyCode.S))
+                spawnedObject[0].GetComponent<MG1_BaloonParent>().Checkcolor(MG1_BaloonType.Blue);
+            else if (Input.GetKeyUp(KeyCode.Q))
+                spawnedObject[0].GetComponent<MG1_BaloonParent>().Checkcolor(MG1_BaloonType.Yellow);
+            else if (Input.GetKeyUp(KeyCode.D))
                 spawnedObject[0].GetComponent<MG1_BaloonParent>().Checkcolor(MG1_BaloonType.Green);
         }
 
@@ -79,5 +94,12 @@ public class MG1_Sequence : MonoBehaviour
     {   canInput=false;
         yield return new WaitForSeconds(stuntTime);
         canInput=true;
+    }
+    public void GunAnim()
+    {
+        
+        Sequence mySequence = DOTween.Sequence();
+        mySequence.Append(gun.transform.DOMoveY(gunPosition.y - 1, 0.10f));
+        mySequence.Append(gun.transform.DOMoveY(gunPosition.y, 0.20f));
     }
 }

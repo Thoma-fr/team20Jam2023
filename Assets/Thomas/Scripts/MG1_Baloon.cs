@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 public class MG1_Baloon : MonoBehaviour
 {
-
+    public Sprite redSprite, greenSprite, blueSprite, yellowSprite;
     public MG1_BaloonType color { get;  set; }
     public int lives = 1;
     public TextMeshPro livestex;
@@ -18,14 +18,14 @@ public class MG1_Baloon : MonoBehaviour
         switch(color)
         {
             case MG1_BaloonType.Blue:
-                sprite.color = Color.blue;
+                sprite.sprite = blueSprite;
                 break;
                 case MG1_BaloonType.Green:
-                sprite.color = Color.green; break;
+                sprite.sprite = greenSprite; break;
                 case MG1_BaloonType.Red:
-                sprite.color = Color.red; break;
+                sprite.sprite = redSprite; break;
                 case MG1_BaloonType.Yellow:
-                sprite.color = Color.yellow; break;
+                sprite.sprite = yellowSprite; break;
         }
     }
     public void Explode()

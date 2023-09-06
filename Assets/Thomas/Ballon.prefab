@@ -269,5 +269,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d2b06387bb54da4cbde1b411fc3f1b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  redSprite: {fileID: 21300000, guid: 3330400ae7d137241a5e50d258269f62, type: 3}
+  greenSprite: {fileID: 21300000, guid: 925630e5821b1f8479ef21f5159c7d39, type: 3}
+  blueSprite: {fileID: 21300000, guid: e896d7760106458458599e3a4611a484, type: 3}
+  yellowSprite: {fileID: 21300000, guid: 784ae28bfc9f5b9429cffa80e7efeed3, type: 3}
   lives: 1
   livestex: {fileID: 6404745744748227085}
