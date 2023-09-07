@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,26 +7,33 @@ public class MG2_GameManager : MonoBehaviour
 {
     [Header("Base Settings")]
     [SerializeField] private GameObject[] _padPrefab;
+    [SerializeField] private GameObject _rockPrefab;
     [SerializeField] private int _nbPad;
 
-    [Header("Game Status")]
+    [Header("Player 1 Status")]
+    [SerializeField] private bool _p1CanPlay = true;
     [SerializeField] private int _p1CurrentPad = 0;
-    [SerializeField] private bool _p1CanPlay;
-    [SerializeField] private int _p2CurrentPad = 0;
-    [SerializeField] private bool _p2CanPlay;
-
     [SerializeField] private List<GameObject> _p1PadList = new();
+
+    [Header("Player 2 Status")]
+    [SerializeField] private bool _p2CanPlay = true;
+    [SerializeField] private int _p2CurrentPad = 0;
     [SerializeField] private List<GameObject> _p2PadList = new();
 
-    private KeyCode[] _colorKeys;
+    private ColorKeys _colorKeys = new();
+    private Animator _p1Anim;
+    private Animator _p2Anim;
 
-    private enum Color { Red, Blue, Green, Yellow}
+    private void Awake()
+    {
+        _p1Anim = GameObject.Find("Player 1").GetComponent<Animator>();
+        _p2Anim = GameObject.Find("Player 2").GetComponent<Animator>();
+    }
 
     private void Start()
     {
         GeneratePadsP1();
         GeneratePadsP2();
-        // spawn case verte 
     }
 
     private void Update()
@@ -33,18 +41,54 @@ public class MG2_GameManager : MonoBehaviour
         if (CheckWin())
             return;
 
-        // check bonne touche
+        if (_p1CanPlay)
+        {
+            if (Input.GetKeyDown(_colorKeys.button1Blue.code) || Input.GetKeyDown(_colorKeys.button2Blue.code))
+            {
+                HandleColorInput(GameColor.Blue, 1);
+                Debug.Log("press blue");
+            }
+            else if (Input.GetKeyDown(_colorKeys.button1Red.code) || Input.GetKeyDown(_colorKeys.button2Red.code))
+            {
+                HandleColorInput(GameColor.Red, 1);
+                Debug.Log("press red");
+            }
+            else if (Input.GetKeyDown(_colorKeys.button1Yellow.code))
+            {
+                HandleColorInput(GameColor.Yellow, 1);
+                Debug.Log("press yellow");
+            }
+            else if (Input.GetKeyDown(_colorKeys.button2Green.code))
+            {
+                HandleColorInput(GameColor.Green, 1);
+                Debug.Log("press green");
+            }
+        }
+
+        if (_p2CanPlay)
+        {
+            if (Input.GetKeyDown(_colorKeys.button3Blue.code))
+                HandleColorInput(GameColor.Blue, 2);
+            else if (Input.GetKeyDown(_colorKeys.button3Green.code) || Input.GetKeyDown(_colorKeys.button4Green.code))
+                HandleColorInput(GameColor.Green, 2);
+            else if (Input.GetKeyDown(_colorKeys.button3Yellow.code) || Input.GetKeyDown(_colorKeys.button4Yellow.code))
+                HandleColorInput(GameColor.Yellow, 2);
+            else if (Input.GetKeyDown(_colorKeys.button4Red.code))
+                HandleColorInput(GameColor.Red, 2);
+        }
     }
 
     private void GeneratePadsP1()
     {
-        Color previousColor = Color.Green;
+        GameColor previousColor = GameColor.Green;
         bool canRepeat = true;
+        SpawnRock(new Vector3(-3, -3, 0), 1);
+        SpawnPad(GameColor.Green, new Vector3(-3, 0, 0), 1);
 
-        float posY = 0;
-        for (int i = 0; i < _nbPad; i++)
+        float posY = 3;
+        for (int i = 1; i < _nbPad; i++)
         {
-            Color currentColor = GetRandomColor();
+            GameColor currentColor = GetRandomColor();
             
             if (!canRepeat && previousColor == currentColor)
             {
@@ -53,9 +97,7 @@ public class MG2_GameManager : MonoBehaviour
                 canRepeat = true;
             }
             else if (canRepeat && previousColor == currentColor)
-            {
                 canRepeat = false;
-            }
             SpawnPad(currentColor, new Vector3(-3, posY, 0), 1);
             previousColor = currentColor;
             posY += 3;
@@ -64,28 +106,31 @@ public class MG2_GameManager : MonoBehaviour
 
     private void GeneratePadsP2()
     {
-        Color previousColor = Color.Green;
-        Color currentColor = GetRandomColor();
+        GameColor previousColor = GameColor.Green;
         bool canRepeat = true;
+        SpawnRock(new Vector3(3, -3, 0), 2);
+        SpawnPad(GameColor.Green, new Vector3(3, 0, 0), 2);
 
-        float posY = 0;
-        for (int i = 0; i < _nbPad; i++)
+        float posY = 3;
+        for (int i = 1; i < _nbPad; i++)
         {
-            if (!canRepeat & previousColor == currentColor)
+            GameColor currentColor = GetRandomColor();
+
+            if (!canRepeat && previousColor == currentColor)
             {
-                currentColor = GetRandomColor();
+                while (previousColor != currentColor)
+                    currentColor = GetRandomColor();
                 canRepeat = true;
             }
-            else if (canRepeat & previousColor == currentColor)
-            {
+            else if (canRepeat && previousColor == currentColor)
                 canRepeat = false;
-            }
-            SpawnPad(GetRandomColor(), new Vector3(3, posY, 0), 2);
+            SpawnPad(currentColor, new Vector3(3, posY, 0), 2);
+            previousColor = currentColor;
             posY += 3;
         }
     }
 
-    private void SpawnPad(Color color, Vector3 pos, int player)
+    private void SpawnPad(GameColor color, Vector3 pos, int player)
     {
         GameObject pad = Instantiate(GetRandomPrefab(color), pos, Quaternion.identity);
         if (player == 1)
@@ -93,16 +138,102 @@ public class MG2_GameManager : MonoBehaviour
         else if (player == 2)
             _p2PadList.Add(pad);
     }
+    private void SpawnRock(Vector3 pos, int player)
+    {
+        GameObject rock = Instantiate(_rockPrefab, pos, Quaternion.identity);
+        if (player == 1)
+            _p1PadList.Add(rock);
+        else if (player == 2)
+            _p2PadList.Add(rock);
+    }
 
-    private GameObject GetRandomPrefab(Color color)
+    private GameObject GetRandomPrefab(GameColor color)
     {
         int prefabIndex = (int)color * 2 + Random.Range(0, 2);
         return _padPrefab[prefabIndex];
     }
 
-    private Color GetRandomColor()
+    private GameColor GetRandomColor()
     {
-        return (Color)Random.Range(0, 4);
+        return (GameColor)Random.Range(0, 4);
+    }
+
+    private void HandleColorInput(GameColor color, int player)
+    {
+        int currentPad = (player == 1) ? _p1CurrentPad: _p2CurrentPad;
+        List<GameObject> padList = (player == 1) ? _p1PadList : _p2PadList;
+
+        currentPad++;
+
+        Debug.Log("current pad : "+ currentPad);
+        Debug.Log("current pad color : " + padList[currentPad].GetComponent<MG2_Pad>().color);
+
+        if (padList[currentPad].GetComponent<MG2_Pad>().color == color && currentPad < padList.Count)
+        {
+            StartCoroutine(MovePads(padList));
+            Debug.Log("good input");
+
+            if (player == 1)
+                _p1CurrentPad = currentPad;
+            else if (player == 2)
+                _p2CurrentPad = currentPad;
+        }
+        else
+        {
+            ResetPad(padList);
+            
+            if (player == 1)
+            {
+                _p1PadList = padList;
+                StartCoroutine(WrongInput(1));
+                Debug.Log("p1 reset");
+
+            }
+            else if (player == 2)
+            {
+                _p2PadList = padList;
+                StartCoroutine(WrongInput(2));
+                Debug.Log("p2 reset");
+            }
+        }
+    }
+
+    private IEnumerator MovePads(List<GameObject> padList)
+    {
+        foreach (GameObject pad in padList)
+            pad.transform.DOLocalMoveY(pad.transform.position.y - 3, 0.2f);
+        yield return null;
+    }
+
+    private IEnumerator WrongInput(int player)
+    {
+        if (player == 1)
+        {
+            _p1CanPlay = false;
+            _p1Anim.SetBool("Can Play", false);
+            _p1CurrentPad = 0;
+        }
+        else if (player == 2)
+        {
+            _p2CanPlay = false;
+            _p2Anim.SetBool("Can Play", false);
+            _p2CurrentPad = 0;
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
+        if (player == 1)
+        {
+            _p1CanPlay = true;
+            GeneratePadsP1();
+            _p1Anim.SetBool("Can Play", true);
+        }
+        else if (player == 2)
+        {
+            _p2CanPlay = true;
+            GeneratePadsP2();
+            _p2Anim.SetBool("Can Play", true);
+        }
     }
 
     private bool CheckWin()
@@ -118,6 +249,13 @@ public class MG2_GameManager : MonoBehaviour
             return true;
         }
         else return false;
+    }
+
+    private void ResetPad(List<GameObject> padList)
+    {
+        foreach (GameObject pad in padList)
+            Destroy(pad);
+        padList.Clear();
     }
 
 }
