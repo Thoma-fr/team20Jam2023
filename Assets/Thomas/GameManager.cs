@@ -26,6 +26,10 @@ public class GameManager : MonoBehaviour
     public List<string> scenesNames = new List<string>();
     public string curentScene;
     public int MinigamesDones;
+
+    public float timeBeforestart=3;
+
+    public GameObject rideauGauche, rideauDroit;
     private void Awake()
     {
         if (instance == null)
@@ -33,7 +37,8 @@ public class GameManager : MonoBehaviour
         else
             Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
-        DisplayMessage("dfdvrqjyrhstegqrfe");
+        //DisplayMessage("dfdvrqjyrhstegqrfe");
+        
     }
     private void Update()
     {
@@ -56,6 +61,21 @@ public class GameManager : MonoBehaviour
                 break;
         }
         MinigamesDones++;
+        transiAnim();
+    }
+    public void transiAnim()
+    {
+        Sequence sequence = DOTween.Sequence();
+        sequence.Append(rideauGauche.transform.DOLocalMove(new Vector3(-436, -102, 0), 1));
+        sequence.Insert(0.2f,rideauDroit.transform.DOLocalMove(new Vector3(456, -102, 0), 1).OnComplete(()=> ChangeScene()));
+        
+
+        sequence.Append(rideauGauche.transform.DOLocalMove(new Vector3(-921, -102, 0), 1));
+        sequence.Insert(1.2f, rideauDroit.transform.DOLocalMove(new Vector3(924, -102, 0), 1));
+    }
+
+    public void ChangeScene()
+    {
         string nextScene = scenesNames[Random.Range(0, scenesNames.Count)];
         while (curentScene == nextScene)
             curentScene = scenesNames[Random.Range(0, scenesNames.Count)];
@@ -70,4 +90,5 @@ public class GameManager : MonoBehaviour
         mySequence.AppendInterval(2f);
         mySequence.Append(messageObject.transform.DOMove(messagepos1.transform.position, 0.5f));
     }
+
 }

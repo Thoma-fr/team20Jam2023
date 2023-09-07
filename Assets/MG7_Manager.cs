@@ -25,9 +25,14 @@ public class MG7_Manager : MonoBehaviour
         if (GameManager.instance.MinigamesDones < 8)
             startTime -= GameManager.instance.MinigamesDones / 2;
         GameManager.instance.DisplayMessage(message);
+        StartCoroutine(delay());
+    }
+    private IEnumerator delay()
+    {
+        yield return new WaitForSeconds(GameManager.instance.timeBeforestart);
         StartCoroutine(countdown());
     }
-    private IEnumerator countdown()
+        private IEnumerator countdown()
     {
         yield return new WaitForSeconds(1);
         startTime--;

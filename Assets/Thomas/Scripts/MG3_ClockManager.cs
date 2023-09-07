@@ -17,11 +17,15 @@ public class MG3_ClockManager : MonoBehaviour
     void Start()
     {
         cam.orthographicSize = startCamSize;
-        duration=Random.Range(DurationRandomMAx, DurationRandomMin);
+        StartCoroutine(delay());
+    }
+    private IEnumerator delay()
+    {
+        yield return new WaitForSeconds(GameManager.instance.timeBeforestart);
+        duration = Random.Range(DurationRandomMAx, DurationRandomMin);
         StartCoroutine(ticktack());
     }
-
-    void Update()
+        void Update()
     {
         if (!canInput)
         {

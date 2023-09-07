@@ -5,19 +5,20 @@ using UnityEngine;
 public class MG8_ScrewDriver : MonoBehaviour
 {
     public List<GameColor> sequence = new List<GameColor>();
-    public List<Sprite> ScrewDriverSprite= new List<Sprite>();
+    public List<Sprite> ScrewDriverSprite = new List<Sprite>();
     public List<Sprite> ScrewSprite = new List<Sprite>();
     public SpriteRenderer screw;
     public int index;
     public int buttonNumber, playerID;
-    private bool canInput=true;
+    private bool canInput = true;
     public int numberOfturnNeeded;
     private int numberOfturn;
     private int numberOfScrew;
     // Start is called before the first frame update
     void Start()
     {
-        numberOfturnNeeded=MG8_Manager.instance.NumberpfTurn;
+        StartCoroutine(delay());
+        numberOfturnNeeded = MG8_Manager.instance.NumberpfTurn;
     }
 
     // Update is called once per frame
@@ -84,7 +85,7 @@ public class MG8_ScrewDriver : MonoBehaviour
                 numberOfturn++;
                 if (numberOfturn >= numberOfturnNeeded)
                 {
-                    if(playerID == 1) 
+                    if (playerID == 1)
                     {
                         MG8_Manager.instance.screwp1++;
                     }
@@ -94,13 +95,19 @@ public class MG8_ScrewDriver : MonoBehaviour
                     }
                     canInput = false;
                 }
-                    
+
             }
             GetComponent<SpriteRenderer>().sprite = ScrewDriverSprite[index];
             screw.GetComponent<SpriteRenderer>().sprite = ScrewSprite[index];
-            transform.position = new Vector2(transform.position.x, transform.position.y+MG8_Manager.instance.screUpMove/numberOfturnNeeded);
+            transform.position = new Vector2(transform.position.x, transform.position.y + MG8_Manager.instance.screUpMove / numberOfturnNeeded);
         }
         else
             Debug.Log("non");
+    }
+    private IEnumerator delay()
+    {
+        canInput = false;
+        yield return new WaitForSeconds(GameManager.instance.timeBeforestart);
+        canInput= true;
     }
 }

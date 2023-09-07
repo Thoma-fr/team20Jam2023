@@ -32,7 +32,7 @@ public class MG1_Manager : MonoBehaviour
     }
     private IEnumerator delay()
     {
-        yield return new WaitForSeconds(timeBeforeStart);
+        yield return new WaitForSeconds(GameManager.instance.timeBeforestart);
         spawner1.SetActive(true);
         spawner2.SetActive(true);
         StartCoroutine(countdown());

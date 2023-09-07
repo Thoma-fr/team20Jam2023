@@ -23,22 +23,10 @@ public class MG8_Manager : MonoBehaviour
             instance = this;
         else
             Destroy(gameObject);
+        timerText.text = startTime.ToString();
 
-        if (GameManager.instance.MinigamesDones < 8)
-            startTime -= GameManager.instance.MinigamesDones / 2;
-        else
-            startTime -= 5;
-
-        if(startTime <= 5)
-        {
-            NumberpfTurn--;
-        }
-        else if (startTime <= 3)
-        {
-            NumberpfTurn--;
-        }
         GameManager.instance.DisplayMessage(message);
-        StartCoroutine(countdown());
+        StartCoroutine(delay());
     }
 
     // Update is called once per frame
@@ -60,7 +48,7 @@ public class MG8_Manager : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         startTime--;
-        timerText.text=startTime.ToString();
+        timerText.text = startTime.ToString();
         if (startTime <= 0)
         {
             GameManager.instance.endMinigame(0, "null");
@@ -68,5 +56,22 @@ public class MG8_Manager : MonoBehaviour
         else
             StartCoroutine(countdown());
     }
+    private IEnumerator delay()
+    {
+        yield return new WaitForSeconds(GameManager.instance.timeBeforestart);
+        StartCoroutine(countdown());
+        if (GameManager.instance.MinigamesDones < 8)
+            startTime -= GameManager.instance.MinigamesDones / 2;
+        else
+            startTime -= 5;
 
+        if (startTime <= 5)
+        {
+            NumberpfTurn--;
+        }
+        else if (startTime <= 3)
+        {
+            NumberpfTurn--;
+        }
+    }
 }

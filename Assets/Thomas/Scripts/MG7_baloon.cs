@@ -21,6 +21,7 @@ public class MG7_baloon : MonoBehaviour
     void Start()
     {
         StartCoroutine(BaloonColorChange());
+        StartCoroutine(delay());
     }
 
     // Update is called once per frame
@@ -108,5 +109,11 @@ public class MG7_baloon : MonoBehaviour
                 break;
         }
         StartCoroutine(BaloonColorChange());
+    }
+    private IEnumerator delay()
+    {
+        canInput = false;
+        yield return new WaitForSeconds(GameManager.instance.timeBeforestart);
+        canInput = true;
     }
 }
