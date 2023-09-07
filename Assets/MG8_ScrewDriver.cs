@@ -17,7 +17,6 @@ public class MG8_ScrewDriver : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         numberOfturnNeeded=MG8_Manager.instance.NumberpfTurn;
     }
 
@@ -99,7 +98,7 @@ public class MG8_ScrewDriver : MonoBehaviour
             }
             GetComponent<SpriteRenderer>().sprite = ScrewDriverSprite[index];
             screw.GetComponent<SpriteRenderer>().sprite = ScrewSprite[index];
-            transform.position = new Vector2(transform.position.x, transform.position.y+0.8f/numberOfturnNeeded);
+            transform.position = new Vector2(transform.position.x, transform.position.y+MG8_Manager.instance.screUpMove/numberOfturnNeeded);
         }
         else
             Debug.Log("non");

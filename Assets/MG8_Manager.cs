@@ -14,8 +14,10 @@ public class MG8_Manager : MonoBehaviour
     public TextMeshProUGUI timerText;
     [SerializeField] private int startTime;
     public int NumberpfTurn;
+
+    public float screUpMove = 0.8f;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if (instance == null)
             instance = this;
