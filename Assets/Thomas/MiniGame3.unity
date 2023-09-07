@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cf4674a2da978b489516d038e8558ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitBetweenRot: 0.5
+  waitBetweenRot: 0.2
   angle: -20
   speed: 0.2
   ease: 30
@@ -361,9 +361,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d2dc14d7520faf4180efaa068ce6005, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitBetweenRot: 0.1
-  angle: 2
-  speed: 0.1
+  waitBetweenRot: 0.01
+  angle: 5
+  speed: 0.3
   ease: 0
 --- !u!1 &370242721
 GameObject:
@@ -709,6 +709,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 169649417768897874, guid: 92d06f223a67cbf408b6967155fcb337, type: 3}
+      propertyPath: m_text
+      value: TURN OFF
+      objectReference: {fileID: 0}
+    - target: {fileID: 169649417768897874, guid: 92d06f223a67cbf408b6967155fcb337, type: 3}
+      propertyPath: m_fontSize
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 169649417768897874, guid: 92d06f223a67cbf408b6967155fcb337, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 860aedb33861b3744b6c967eabf0deb7, type: 2}
+    - target: {fileID: 169649417768897874, guid: 92d06f223a67cbf408b6967155fcb337, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -4023029739792496364, guid: 860aedb33861b3744b6c967eabf0deb7, type: 2}
+    - target: {fileID: 169649417768897874, guid: 92d06f223a67cbf408b6967155fcb337, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7857189365532584298, guid: 92d06f223a67cbf408b6967155fcb337, type: 3}
       propertyPath: m_Name
       value: GamaManager a delete pour ship
@@ -888,9 +908,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d2dc14d7520faf4180efaa068ce6005, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitBetweenRot: 0.1
-  angle: 2
-  speed: 0.1
+  waitBetweenRot: 0.01
+  angle: 5
+  speed: 0.3
   ease: 0
 --- !u!1 &2067931842
 GameObject:
@@ -927,6 +947,7 @@ MonoBehaviour:
   background: {fileID: 370242723}
   cam: {fileID: 203577442}
   startCamSize: 10
+  camspeed: 0.6
 --- !u!4 &2067931844
 Transform:
   m_ObjectHideFlags: 0
