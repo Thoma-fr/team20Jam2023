@@ -1,6 +1,8 @@
 using UnityEngine;
 using TMPro;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public enum GameColor
 {
@@ -20,6 +22,10 @@ public class GameManager : MonoBehaviour
     public float currentTime;
 
     public int minigamePlayed;
+
+    public List<string> scenesNames = new List<string>();
+
+    public int MinigamesDones;
     private void Awake()
     {
         if (instance == null)
@@ -42,11 +48,15 @@ public class GameManager : MonoBehaviour
                 break;
             case "p1":
                 p1Score += score;
+                Debug.Log(p1Score);
                 break;
             case "p2":
                 p2Score += score;
+                Debug.Log(p2Score);
                 break;
         }
+        MinigamesDones++;
+        SceneManager.LoadScene(scenesNames[Random.Range(0, scenesNames.Count)]);
     }
     public void DisplayMessage(string message)
     {
