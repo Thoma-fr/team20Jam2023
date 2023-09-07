@@ -439,6 +439,15 @@ MonoBehaviour:
   messageObject: {fileID: 2048366690162213077}
   messagepos1: {fileID: 4514889604725820064}
   messagepos2: {fileID: 7807368898034796217}
+  currentTime: 0
+  minigamePlayed: 0
+  scenesNames:
+  - MiniGame8
+  - MiniGame3
+  - MiniGame1
+  - MiniGame7
+  curentScene: 
+  MinigamesDones: 0
 --- !u!1 &9144743606457610738
 GameObject:
   m_ObjectHideFlags: 0
