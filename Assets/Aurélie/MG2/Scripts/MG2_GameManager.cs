@@ -46,22 +46,22 @@ public class MG2_GameManager : MonoBehaviour
             if (Input.GetKeyDown(_colorKeys.button1Blue.code) || Input.GetKeyDown(_colorKeys.button2Blue.code))
             {
                 HandleColorInput(GameColor.Blue, 1);
-                Debug.Log("press blue");
+                //Debug.Log("p1 press blue");
             }
             else if (Input.GetKeyDown(_colorKeys.button1Red.code) || Input.GetKeyDown(_colorKeys.button2Red.code))
             {
                 HandleColorInput(GameColor.Red, 1);
-                Debug.Log("press red");
+                //Debug.Log("p1 press red");
             }
             else if (Input.GetKeyDown(_colorKeys.button1Yellow.code))
             {
                 HandleColorInput(GameColor.Yellow, 1);
-                Debug.Log("press yellow");
+                //Debug.Log("p1 press yellow");
             }
             else if (Input.GetKeyDown(_colorKeys.button2Green.code))
             {
                 HandleColorInput(GameColor.Green, 1);
-                Debug.Log("press green");
+                //Debug.Log("p1 press green");
             }
         }
 
@@ -89,11 +89,16 @@ public class MG2_GameManager : MonoBehaviour
         for (int i = 1; i < _nbPad; i++)
         {
             GameColor currentColor = GetRandomColor();
-            
+            //Debug.Log(currentColor);
+            //Debug.Log(canRepeat);
+
             if (!canRepeat && previousColor == currentColor)
             {
-                while (previousColor != currentColor)
+                while (previousColor == currentColor)
+                {
                     currentColor = GetRandomColor();
+                    //Debug.Log("!canrepeat   " + currentColor);
+                }
                 canRepeat = true;
             }
             else if (canRepeat && previousColor == currentColor)
@@ -118,7 +123,7 @@ public class MG2_GameManager : MonoBehaviour
 
             if (!canRepeat && previousColor == currentColor)
             {
-                while (previousColor != currentColor)
+                while (previousColor == currentColor)
                     currentColor = GetRandomColor();
                 canRepeat = true;
             }
@@ -165,13 +170,13 @@ public class MG2_GameManager : MonoBehaviour
 
         currentPad++;
 
-        Debug.Log("current pad : "+ currentPad);
-        Debug.Log("current pad color : " + padList[currentPad].GetComponent<MG2_Pad>().color);
+        //Debug.Log("current pad : "+ currentPad);
+        //Debug.Log("current pad color : " + padList[currentPad].GetComponent<MG2_Pad>().color);
 
         if (padList[currentPad].GetComponent<MG2_Pad>().color == color && currentPad < padList.Count)
         {
             StartCoroutine(MovePads(padList));
-            Debug.Log("good input");
+            //Debug.Log("good input");
 
             if (player == 1)
                 _p1CurrentPad = currentPad;
@@ -186,14 +191,14 @@ public class MG2_GameManager : MonoBehaviour
             {
                 _p1PadList = padList;
                 StartCoroutine(WrongInput(1));
-                Debug.Log("p1 reset");
+                //Debug.Log("p1 reset");
 
             }
             else if (player == 2)
             {
                 _p2PadList = padList;
                 StartCoroutine(WrongInput(2));
-                Debug.Log("p2 reset");
+                //Debug.Log("p2 reset");
             }
         }
     }
@@ -240,12 +245,12 @@ public class MG2_GameManager : MonoBehaviour
     {
         if (_p1CurrentPad >= _nbPad)
         {
-            Debug.Log("p1 win");
+            //Debug.Log("p1 win");
             return true;
         }
         else if (_p2CurrentPad >= _nbPad)
         {
-            Debug.Log("p2 win");
+            //Debug.Log("p2 win");
             return true;
         }
         else return false;

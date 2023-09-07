@@ -34,7 +34,7 @@ public class ColorKeys
     public ColorKey button3Green = new(1, 3, GameColor.Green, KeyCode.I);
     public ColorKey button3Yellow = new(1, 3, GameColor.Yellow, KeyCode.O);
 
-    public ColorKey button4Green = new(1, 4, GameColor.Green, KeyCode.P);
-    public ColorKey button4Red = new(1, 4, GameColor.Red, KeyCode.Q);
-    public ColorKey button4Yellow = new(1, 4, GameColor.Yellow, KeyCode.S);
+    public ColorKey button4Green = new(1, 4, GameColor.Green, KeyCode.Q);
+    public ColorKey button4Red = new(1, 4, GameColor.Red, KeyCode.S);
+    public ColorKey button4Yellow = new(1, 4, GameColor.Yellow, KeyCode.P);
 }
