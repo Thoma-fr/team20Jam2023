@@ -1,6 +1,5 @@
 using DG.Tweening;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MG3_ClockManager : MonoBehaviour
@@ -10,29 +9,34 @@ public class MG3_ClockManager : MonoBehaviour
     private int duration;
     [SerializeField] private SpriteRenderer background;
     [SerializeField] private Camera cam;
-    [SerializeField] private float startCamSize;
+    [SerializeField] private Vector3 startCamPos;
     [SerializeField] private float camspeed;
     private bool canInput;
 
+    public AudioClip ring;
     void Start()
     {
-        cam.orthographicSize = startCamSize;
+        startCamPos = cam.transform.position;
         StartCoroutine(delay());
+        GameManager.instance.GetComponent<AudioLowPassFilter>().enabled = true;
+        DOTween.To(() => GameManager.instance.GetComponent<AudioLowPassFilter>().cutoffFrequency, x => GameManager.instance.GetComponent<AudioLowPassFilter>().cutoffFrequency = x, 1000, 1);
+
     }
     private IEnumerator delay()
     {
         yield return new WaitForSeconds(GameManager.instance.timeBeforestart);
         duration = Random.Range(DurationRandomMAx, DurationRandomMin);
+        DOTween.To(() => GameManager.instance.GetComponent<AudioLowPassFilter>().cutoffFrequency, x => GameManager.instance.GetComponent<AudioLowPassFilter>().cutoffFrequency = x, 10, duration);
         StartCoroutine(ticktack());
     }
-        void Update()
+    void Update()
     {
         if (!canInput)
         {
-            cam.orthographicSize -= camspeed * Time.deltaTime;
+            cam.transform.position = new Vector3(cam.transform.position.x, cam.transform.position.y, cam.transform.position.z + camspeed * Time.deltaTime);
         }
         else
-            cam.orthographicSize = startCamSize;
+            cam.transform.position = startCamPos;
 
         if (Input.GetKeyUp(KeyCode.Z) || Input.GetKeyUp(KeyCode.W))
             Checkcolor(1, GameColor.Red);
@@ -54,7 +58,7 @@ public class MG3_ClockManager : MonoBehaviour
     }
     public void animCadran()
     {
-        Sequence sequence = DOTween.Sequence();
+        
 
     }
     public void Checkcolor(int ID, GameColor col)
@@ -86,6 +90,7 @@ public class MG3_ClockManager : MonoBehaviour
     {
         Debug.Log("gg a p" + id);
         GameManager.instance.endMinigame(1, "p" + id);
+        DOTween.To(() => GameManager.instance.GetComponent<AudioLowPassFilter>().cutoffFrequency, x => GameManager.instance.GetComponent<AudioLowPassFilter>().cutoffFrequency = x, 5000, 1).OnComplete(()=>GameManager.instance.GetComponent<AudioLowPassFilter>().enabled=false);
     }
     private IEnumerator ticktack()
     {
@@ -100,6 +105,7 @@ public class MG3_ClockManager : MonoBehaviour
         //cam.orthographicSize=startCamSize;
         colorAvailable= (GameColor)Random.Range(0, 3);
         canInput = true;
+        ClockAnime();
         switch (colorAvailable)
         {
             case GameColor.Red:
@@ -113,5 +119,13 @@ public class MG3_ClockManager : MonoBehaviour
                 break;
         }
 
+    }
+    public void ClockAnime()
+    {
+        GetComponent<AudioSource>().Stop();
+        GetComponent<AudioSource>().PlayOneShot(ring);
+        Sequence sequence = DOTween.Sequence();
+        sequence.Append(transform.DOLocalRotate(new Vector3(0, 0, 5),0.1f,RotateMode.Fast));
+        sequence.Append(transform.DOLocalRotate(new Vector3(0, 0, -5), 0.1f, RotateMode.Fast).SetLoops(-1,LoopType.Restart));
     }
 }

@@ -34,7 +34,9 @@ public class MG1_Baloon : MonoBehaviour
         lives--;
             livestex.text = lives.ToString();
         if (lives <= 0)
+        {
             Destroy(gameObject);
+        }
     }
 
 }

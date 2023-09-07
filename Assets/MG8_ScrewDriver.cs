@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MG8_ScrewDriver : MonoBehaviour
@@ -14,6 +15,8 @@ public class MG8_ScrewDriver : MonoBehaviour
     public int numberOfturnNeeded;
     private int numberOfturn;
     private int numberOfScrew;
+
+    public AudioClip unscrew;
     // Start is called before the first frame update
     void Start()
     {
@@ -78,7 +81,8 @@ public class MG8_ScrewDriver : MonoBehaviour
         {
             Debug.Log("oui");
             index++;
-
+            GetComponent<AudioSource>().pitch = Random.Range(0.8f, 1f);
+            GetComponent<AudioSource>().PlayOneShot(unscrew);
             if (index == sequence.Count)
             {
                 index = 0;

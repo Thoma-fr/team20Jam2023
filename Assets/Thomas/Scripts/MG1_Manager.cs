@@ -8,11 +8,12 @@ public class MG1_Manager : MonoBehaviour
     public TextMeshProUGUI timerText;
     [SerializeField]private int startTime;
 
-    private GameManager gameManager;
+    private AudioSource audioSource;
     public string message;
     public float timeBeforeStart; 
     [SerializeField] private GameObject spawner1,spawner2;
     public static MG1_Manager instance;
+
     void Start()
     {
         if (instance == null)
@@ -22,7 +23,8 @@ public class MG1_Manager : MonoBehaviour
 
         GameManager.instance.DisplayMessage(message);
         StartCoroutine(delay());
-        startTime -= GameManager.instance.minigamePlayed;
+        startTime -= GameManager.instance.MinigamesDones;
+        audioSource = GameManager.instance.GetComponent<AudioSource>();
     }
 
     private void Update()

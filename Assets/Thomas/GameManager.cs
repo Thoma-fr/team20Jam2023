@@ -79,14 +79,15 @@ public class GameManager : MonoBehaviour
 
     public void ChangeScene()
     {
-        string nextScene = scenesNames[Random.Range(0, scenesNames.Count)];
+        //string nextScene = scenesNames[Random.Range(0, scenesNames.Count)];
         //while (curentScene == nextScene)
             //curentScene = scenesNames[Random.Range(0, scenesNames.Count)];
-        SceneManager.LoadScene(nextScene);
+        //SceneManager.LoadScene(nextScene);
 
         int nextIndex = Random.Range(0, scenesNames.Count);
         while (curentIndex == nextIndex)
             nextIndex = Random.Range(0, scenesNames.Count);
+        curentIndex = nextIndex;
         SceneManager.LoadScene(scenesNames[nextIndex]);
     }
     public void DisplayMessage(string message)

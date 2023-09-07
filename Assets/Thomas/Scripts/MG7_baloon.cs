@@ -17,6 +17,7 @@ public class MG7_baloon : MonoBehaviour
     
     public float scalepercentage=1.10f;
     public GameObject baloon;
+    public AudioClip sound;
     // Start is called before the first frame update
     void Start()
     {
@@ -74,6 +75,9 @@ public class MG7_baloon : MonoBehaviour
             pompeSR.sprite = pompeSprite1;
         if (col == colorNeeded)
         {
+            GetComponent<AudioSource>().pitch = Random.Range(0.8f, 1f);
+
+            GetComponent<AudioSource>().PlayOneShot(sound);
             transform.localScale = new Vector3(transform.localScale.x+scalepercentage, transform.localScale.y+scalepercentage,transform.localScale.z);
             if (playerID == 1)
                 MG7_Manager.Instance.scorep1++;

@@ -8,6 +8,7 @@ public class MG1_BaloonParent : MonoBehaviour
     [SerializeField] private GameObject baloonPrefab;
     [SerializeField] private List<Vector2> spawnPoint = new List<Vector2>();
     public MG1_Sequence spawner {  get; set; }
+    public AudioClip missShot, explode;
     private void Start()
     {
         //spawnBalon(3);newBaloon.GetComponent<MG1_Baloon>().color = (MG1_BaloonType)Random.Range(0, 3);
@@ -26,12 +27,20 @@ public class MG1_BaloonParent : MonoBehaviour
                 Debug.Log("baloon destroyed");
                 hasFoundColor = true;
                 spawner.numberPoped++;
+                GetComponent<AudioSource>().pitch = Random.Range(0.8f, 1f);
+
+                GetComponent<AudioSource>().PlayOneShot(explode);
+
                 break;
             }
         }
         if (!hasFoundColor)
         {
             Debug.Log("Stunt");
+
+                GetComponent<AudioSource>().pitch = Random.Range(0.8f, 1f);
+
+            GetComponent<AudioSource>().PlayOneShot(missShot);
             spawner.StuntTrigger();
             ChangeOpacity();
         }
@@ -51,7 +60,7 @@ public class MG1_BaloonParent : MonoBehaviour
         if (transform.childCount == 0)
         {
             spawner.spawnedObject.Remove(gameObject);
-            Destroy(gameObject);
+            Destroy(gameObject,0.2f);
         }
     }
     public void spawnBalon(int number)
