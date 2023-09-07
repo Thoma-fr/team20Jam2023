@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
 
     public List<string> scenesNames = new List<string>();
 
+    public int MinigamesDones;
     private void Awake()
     {
         if (instance == null)
@@ -54,6 +55,7 @@ public class GameManager : MonoBehaviour
                 Debug.Log(p2Score);
                 break;
         }
+        MinigamesDones++;
         SceneManager.LoadScene(scenesNames[Random.Range(0, scenesNames.Count)]);
     }
     public void DisplayMessage(string message)
