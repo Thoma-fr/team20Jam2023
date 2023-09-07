@@ -605,7 +605,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 91a1f9a638ca4c846a5ce5ecb4dd5168, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -689,7 +689,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: fa40c625a8b84a64a9e1adc65169efc7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -733,6 +733,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GamaManager a delete pour ship
       objectReference: {fileID: 0}
+    - target: {fileID: 7941820917357830174, guid: 92d06f223a67cbf408b6967155fcb337, type: 3}
+      propertyPath: messageObject
+      value: 
+      objectReference: {fileID: 1577041212}
     - target: {fileID: 9082327302943163578, guid: 92d06f223a67cbf408b6967155fcb337, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.1915356
@@ -912,6 +916,11 @@ MonoBehaviour:
   angle: 5
   speed: 0.3
   ease: 0
+--- !u!1 &1577041212 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2048366690162213077, guid: 92d06f223a67cbf408b6967155fcb337, type: 3}
+  m_PrefabInstance: {fileID: 1074500945}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2067931842
 GameObject:
   m_ObjectHideFlags: 0
