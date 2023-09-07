@@ -1016,7 +1016,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerText: {fileID: 1048662575}
   startTime: 12
-  message: EXPLOSE LES BALLONS
+  message: POP THEM
   timeBeforeStart: 2
   spawner1: {fileID: 1799254933}
   spawner2: {fileID: 1782296297}
