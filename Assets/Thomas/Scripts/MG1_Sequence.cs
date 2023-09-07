@@ -2,7 +2,6 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public enum MG1_BaloonType
 {
@@ -41,7 +40,9 @@ public class MG1_Sequence : MonoBehaviour
     }
     void Update()
     {
-        SpawnSpeed -= GameManager.instance.currentTime * acceleration*Time.deltaTime;
+        if(SpawnSpeed>0.8f)
+            SpawnSpeed -= GameManager.instance.currentTime * acceleration*Time.deltaTime;
+
         if (canInput&& spawnedObject.Count>0 && playerID==2)
         {
             if (Input.GetKeyUp(KeyCode.UpArrow))

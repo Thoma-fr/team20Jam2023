@@ -61,7 +61,7 @@ public class MG1_BaloonParent : MonoBehaviour
         {
             var newBaloon = Instantiate(baloonPrefab, transform);
             newBaloon.transform.position = spawnPoint[0];
-            newBaloon.GetComponent<MG1_Baloon>().color = (MG1_BaloonType)Random.Range(0,3);
+            newBaloon.GetComponent<MG1_Baloon>().color = (MG1_BaloonType)Random.Range(0,4);
             spawnPoint.RemoveAt(0);
             if (number == 1)
             {

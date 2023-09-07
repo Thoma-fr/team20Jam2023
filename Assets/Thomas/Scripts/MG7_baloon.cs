@@ -95,7 +95,7 @@ public class MG7_baloon : MonoBehaviour
     private IEnumerator BaloonColorChange()
     {
         yield return new WaitForSeconds(Random.Range(MG7_Manager.Instance.RandomTimeMin, MG7_Manager.Instance.RandomTimeMax));
-        colorNeeded = (GameColor)Random.Range(0, 3);
+        colorNeeded = (GameColor)Random.Range(0, 4);
         switch (colorNeeded)
         {
             case GameColor.Red:

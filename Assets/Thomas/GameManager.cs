@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
 {
     public int p1Score {  get; set; }
     public int p2Score { get; set; }
+    public TextMeshProUGUI scoretext1, scoretext2;
     public static GameManager instance;
     public TextMeshProUGUI timerText;
     public GameObject messageObject;
@@ -24,7 +25,7 @@ public class GameManager : MonoBehaviour
     public int minigamePlayed;
 
     public List<string> scenesNames = new List<string>();
-    public string curentScene;
+    public int curentIndex;
     public int MinigamesDones;
 
     public float timeBeforestart=3;
@@ -53,10 +54,12 @@ public class GameManager : MonoBehaviour
                 break;
             case "p1":
                 p1Score += score;
+                scoretext1.text=p1Score.ToString();
                 Debug.Log(p1Score);
                 break;
             case "p2":
                 p2Score += score;
+                scoretext2.text = p2Score.ToString();
                 Debug.Log(p2Score);
                 break;
         }
@@ -77,18 +80,23 @@ public class GameManager : MonoBehaviour
     public void ChangeScene()
     {
         string nextScene = scenesNames[Random.Range(0, scenesNames.Count)];
-        while (curentScene == nextScene)
-            curentScene = scenesNames[Random.Range(0, scenesNames.Count)];
+        //while (curentScene == nextScene)
+            //curentScene = scenesNames[Random.Range(0, scenesNames.Count)];
         SceneManager.LoadScene(nextScene);
+
+        int nextIndex = Random.Range(0, scenesNames.Count);
+        while (curentIndex == nextIndex)
+            nextIndex = Random.Range(0, scenesNames.Count);
+        SceneManager.LoadScene(scenesNames[nextIndex]);
     }
     public void DisplayMessage(string message)
     {
         TextMeshProUGUI messageText= messageObject.GetComponent<TextMeshProUGUI>();
         Sequence mySequence = DOTween.Sequence();
         messageText.text = message;
-        mySequence.Append(messageObject.transform.DOMove(messagepos2.transform.position,0.5f).SetEase(Ease.OutBounce));
+        mySequence.Append(messageObject.transform.parent.DOMove(messagepos2.transform.position,0.5f).SetEase(Ease.OutBounce));
         mySequence.AppendInterval(2f);
-        mySequence.Append(messageObject.transform.DOMove(messagepos1.transform.position, 0.5f));
+        mySequence.Append(messageObject.transform.parent.DOMove(messagepos1.transform.position, 0.5f));
     }
 
 }

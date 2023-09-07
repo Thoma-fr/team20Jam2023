@@ -25,7 +25,8 @@ public class MG1_Baloon : MonoBehaviour
                 case MG1_BaloonType.Red:
                 sprite.sprite = redSprite; break;
                 case MG1_BaloonType.Yellow:
-                sprite.sprite = yellowSprite; break;
+                sprite.sprite = yellowSprite;
+                break;
         }
     }
     public void Explode()

@@ -14,6 +14,7 @@ public class MG7_Manager : MonoBehaviour
     public string message;
     public TextMeshProUGUI timerText;
     [SerializeField] private int startTime;
+    bool isfinished;
     void Awake()
     {
         timerText.text = startTime.ToString();
@@ -46,11 +47,19 @@ public class MG7_Manager : MonoBehaviour
     }
     public void Update()
     {
-        
-        if (scorep1 >= ScoreNeeded)
-            GameManager.instance.endMinigame(1, "p1");
-        else if (scorep2 >= ScoreNeeded)
-            GameManager.instance.endMinigame(1, "p2");
+        if (!isfinished)
+        {
+            if (scorep1 >= ScoreNeeded)
+            {
+                GameManager.instance.endMinigame(1, "p1");
+                isfinished = true;
+            }
+            else if (scorep2 >= ScoreNeeded)
+            {
+                isfinished = true;
+                GameManager.instance.endMinigame(1, "p2");
+            }
+        }
     }
     public void EndMiniGame()
     {

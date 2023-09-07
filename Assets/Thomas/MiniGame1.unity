@@ -1018,8 +1018,8 @@ MonoBehaviour:
   startTime: 12
   message: POP THEM
   timeBeforeStart: 2
-  spawner1: {fileID: 1799254933}
-  spawner2: {fileID: 1782296297}
+  spawner1: {fileID: 1782296297}
+  spawner2: {fileID: 1799254933}
 --- !u!4 &1448965370
 Transform:
   m_ObjectHideFlags: 0
@@ -1203,6 +1203,10 @@ PrefabInstance:
     - target: {fileID: 7857189365532584298, guid: 92d06f223a67cbf408b6967155fcb337, type: 3}
       propertyPath: m_Name
       value: GamaManager a  delete a la fin
+      objectReference: {fileID: 0}
+    - target: {fileID: 7941820917357830174, guid: 92d06f223a67cbf408b6967155fcb337, type: 3}
+      propertyPath: timeBeforestart
+      value: 2.9
       objectReference: {fileID: 0}
     - target: {fileID: 9082327302943163578, guid: 92d06f223a67cbf408b6967155fcb337, type: 3}
       propertyPath: m_LocalPosition.x

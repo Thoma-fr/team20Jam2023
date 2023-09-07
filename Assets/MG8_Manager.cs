@@ -16,6 +16,8 @@ public class MG8_Manager : MonoBehaviour
     public int NumberpfTurn;
 
     public float screUpMove = 0.8f;
+    private bool isfinished;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -32,15 +34,20 @@ public class MG8_Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (screwp1 >= 2)
+        if (!isfinished)
         {
-            GameManager.instance.endMinigame(1, "p1");
-            Debug.Log("p1 gagne");
-        }
-        else if (screwp2 >= 2)
-        {
-            Debug.Log("p2 gagne");
-            GameManager.instance.endMinigame(1, "p2");
+            if (screwp1 >= 2)
+            {
+                GameManager.instance.endMinigame(1, "p1");
+                Debug.Log("p1 gagne");
+                isfinished=true;
+            }
+            else if (screwp2 >= 2)
+            {
+                Debug.Log("p2 gagne");
+                GameManager.instance.endMinigame(1, "p2");
+                isfinished = true;
+            }
         }
 
     }
