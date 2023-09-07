@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
         MinigamesDones++;
         string nextScene = scenesNames[Random.Range(0, scenesNames.Count)];
         while (curentScene == nextScene)
-            nextScene = scenesNames[Random.Range(0, scenesNames.Count)];
+            curentScene = scenesNames[Random.Range(0, scenesNames.Count)];
         SceneManager.LoadScene(nextScene);
     }
     public void DisplayMessage(string message)
