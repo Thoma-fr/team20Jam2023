@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     public int minigamePlayed;
 
     public List<string> scenesNames = new List<string>();
-
+    public string curentScene;
     public int MinigamesDones;
     private void Awake()
     {
@@ -56,7 +56,10 @@ public class GameManager : MonoBehaviour
                 break;
         }
         MinigamesDones++;
-        SceneManager.LoadScene(scenesNames[Random.Range(0, scenesNames.Count)]);
+        string nextScene = scenesNames[Random.Range(0, scenesNames.Count)];
+        while (curentScene == nextScene)
+            nextScene = scenesNames[Random.Range(0, scenesNames.Count)];
+        SceneManager.LoadScene(nextScene);
     }
     public void DisplayMessage(string message)
     {
