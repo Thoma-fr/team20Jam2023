@@ -58,7 +58,12 @@ public class MG8_Manager : MonoBehaviour
         timerText.text = startTime.ToString();
         if (startTime <= 0)
         {
-            GameManager.instance.endMinigame(0, "null");
+            if(screwp1>screwp2)
+                GameManager.instance.endMinigame(1, "p1");
+            else if (screwp2>screwp1)
+                GameManager.instance.endMinigame(1, "p2");
+            else
+                GameManager.instance.endMinigame(1, "null");
         }
         else
             StartCoroutine(countdown());

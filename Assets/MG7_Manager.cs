@@ -60,6 +60,21 @@ public class MG7_Manager : MonoBehaviour
                 GameManager.instance.endMinigame(1, "p2");
             }
         }
+        else
+        {
+            if(scorep1 > scorep2)
+            {
+                GameManager.instance.endMinigame(1, "p1");
+            }
+            else if(scorep2 < scorep1)
+            {
+                GameManager.instance.endMinigame(1, "p2");
+            }
+            else
+            {
+                GameManager.instance.endMinigame(0, "null");
+            }
+        }
     }
     public void EndMiniGame()
     {
