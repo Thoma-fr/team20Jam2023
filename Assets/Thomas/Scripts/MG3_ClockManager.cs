@@ -12,11 +12,13 @@ public class MG3_ClockManager : MonoBehaviour
     [SerializeField] private Vector3 startCamPos;
     [SerializeField] private float camspeed;
     private bool canInput;
-
+    public string message;
     public AudioClip ring;
+    private ColorKeys _colorKeys = new();
     void Start()
     {
         startCamPos = cam.transform.position;
+        GameManager.instance.DisplayMessage(message);
         StartCoroutine(delay());
         GameManager.instance.GetComponent<AudioLowPassFilter>().enabled = true;
         DOTween.To(() => GameManager.instance.GetComponent<AudioLowPassFilter>().cutoffFrequency, x => GameManager.instance.GetComponent<AudioLowPassFilter>().cutoffFrequency = x, 1000, 1);
@@ -38,22 +40,22 @@ public class MG3_ClockManager : MonoBehaviour
         else
             cam.transform.position = startCamPos;
 
-        if (Input.GetKeyUp(KeyCode.S))
+        if (Input.GetKeyDown(_colorKeys.button4Red.code))
             Checkcolor(2, GameColor.Red);
-        else if (Input.GetKeyUp(KeyCode.U))
+        else if (Input.GetKeyDown(_colorKeys.button3Blue.code))
             Checkcolor(2, GameColor.Blue);
-        else if (Input.GetKeyUp(KeyCode.P) && Input.GetKeyUp(KeyCode.O))
+        else if (Input.GetKeyDown(_colorKeys.button3Yellow.code) || Input.GetKeyDown(_colorKeys.button4Yellow.code))
             Checkcolor(2, GameColor.Yellow);
-        else if (Input.GetKeyUp(KeyCode.I) && Input.GetKeyUp(KeyCode.Q))
+        else if (Input.GetKeyDown(_colorKeys.button3Green.code) || Input.GetKeyDown(_colorKeys.button4Green.code))
             Checkcolor(2, GameColor.Green);
 
-        if (Input.GetKeyUp(KeyCode.Z) || Input.GetKeyUp(KeyCode.T))
+        if (Input.GetKeyDown(_colorKeys.button1Red.code) || Input.GetKeyDown(_colorKeys.button2Red.code))
             Checkcolor(1, GameColor.Red);
-        else if (Input.GetKeyUp(KeyCode.E) || Input.GetKeyUp(KeyCode.R))
+        else if (Input.GetKeyDown(_colorKeys.button1Blue.code) || Input.GetKeyDown(_colorKeys.button2Blue.code))
             Checkcolor(1,GameColor.Blue);
-        else if (Input.GetKeyUp(KeyCode.A))
+        else if (Input.GetKeyDown(_colorKeys.button1Yellow.code))
             Checkcolor(1,GameColor.Yellow);
-        else if (Input.GetKeyUp(KeyCode.Y))
+        else if (Input.GetKeyDown(_colorKeys.button2Green.code))
             Checkcolor(1, GameColor.Green);
     }
     public void animCadran()

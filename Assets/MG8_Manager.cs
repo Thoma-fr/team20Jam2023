@@ -17,7 +17,7 @@ public class MG8_Manager : MonoBehaviour
 
     public float screUpMove = 0.8f;
     private bool isfinished;
-
+    private ColorKeys _colorKeys = new();
     // Start is called before the first frame update
     void Awake()
     {

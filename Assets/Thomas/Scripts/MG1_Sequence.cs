@@ -26,9 +26,9 @@ public class MG1_Sequence : MonoBehaviour
     //public float speed;
     private bool canInput=true;
     public int NumberToSpawn{get; set;}
- 
 
-    
+    private ColorKeys _colorKeys = new();
+
     public int numberPoped { get; set;}
     // 1/3 deux balons spawn en même temps
     // 1/3 trois balons spawn en même temps
@@ -43,26 +43,27 @@ public class MG1_Sequence : MonoBehaviour
         if(SpawnSpeed>0.8f)
             SpawnSpeed -= GameManager.instance.currentTime * acceleration*Time.deltaTime;
 
-        if (canInput&& spawnedObject.Count>0 && playerID==2)
-        {
-            if (Input.GetKeyUp(KeyCode.S))//q
-                spawnedObject[0].GetComponent<MG1_BaloonParent>().Checkcolor(MG1_BaloonType.Red);
-            else if (Input.GetKeyUp(KeyCode.U))
-                spawnedObject[0].GetComponent<MG1_BaloonParent>().Checkcolor(MG1_BaloonType.Blue);
-            else if (Input.GetKeyUp(KeyCode.P)&& Input.GetKeyUp(KeyCode.O))
-                spawnedObject[0].GetComponent<MG1_BaloonParent>().Checkcolor(MG1_BaloonType.Yellow);
-            else if (Input.GetKeyUp(KeyCode.I)&& Input.GetKeyUp(KeyCode.A))//p
-                spawnedObject[0].GetComponent<MG1_BaloonParent>().Checkcolor(MG1_BaloonType.Green);
-        }
         if (canInput && spawnedObject.Count > 0 && playerID == 1)
         {
-            if (Input.GetKeyUp(KeyCode.Z)|| Input.GetKeyUp(KeyCode.T))
+            if (Input.GetKeyDown(_colorKeys.button1Red.code) || Input.GetKeyDown(_colorKeys.button2Red.code))
                 spawnedObject[0].GetComponent<MG1_BaloonParent>().Checkcolor(MG1_BaloonType.Red);
-            else if (Input.GetKeyUp(KeyCode.E) || Input.GetKeyUp(KeyCode.R))
+            else if (Input.GetKeyDown(_colorKeys.button1Blue.code) || Input.GetKeyDown(_colorKeys.button2Blue.code))
                 spawnedObject[0].GetComponent<MG1_BaloonParent>().Checkcolor(MG1_BaloonType.Blue);
-            else if (Input.GetKeyUp(KeyCode.Q))
+            else if (Input.GetKeyDown(_colorKeys.button1Yellow.code))
                 spawnedObject[0].GetComponent<MG1_BaloonParent>().Checkcolor(MG1_BaloonType.Yellow);
-            else if (Input.GetKeyUp(KeyCode.Y))
+            else if (Input.GetKeyDown(_colorKeys.button2Green.code))
+                spawnedObject[0].GetComponent<MG1_BaloonParent>().Checkcolor(MG1_BaloonType.Green);
+        }
+
+        if (canInput && spawnedObject.Count > 0 && playerID == 2)
+        {
+            if (Input.GetKeyDown(_colorKeys.button4Red.code))//q
+                spawnedObject[0].GetComponent<MG1_BaloonParent>().Checkcolor(MG1_BaloonType.Red);
+            else if (Input.GetKeyDown(_colorKeys.button3Blue.code))
+                spawnedObject[0].GetComponent<MG1_BaloonParent>().Checkcolor(MG1_BaloonType.Blue);
+            else if (Input.GetKeyDown(_colorKeys.button3Yellow.code) || Input.GetKeyDown(_colorKeys.button4Yellow.code))
+                spawnedObject[0].GetComponent<MG1_BaloonParent>().Checkcolor(MG1_BaloonType.Yellow);
+            else if (Input.GetKeyDown(_colorKeys.button3Green.code) || Input.GetKeyDown(_colorKeys.button4Green.code))//p
                 spawnedObject[0].GetComponent<MG1_BaloonParent>().Checkcolor(MG1_BaloonType.Green);
         }
 

@@ -31,6 +31,7 @@ public class MG2_GameManager : MonoBehaviour
     private Animator _p1Anim;
     private Animator _p2Anim;
 
+    private bool hasWin;
     private void Awake()
     {
         _p1Anim = GameObject.Find("Player 1").GetComponent<Animator>();
@@ -258,15 +259,21 @@ public class MG2_GameManager : MonoBehaviour
 
     private bool CheckWin()
     {
-        if (_p1CurrentPad >= _nbPad)
+        if (!hasWin)
         {
-            GameManager.instance.endMinigame(1, "p1");
-            return true;
-        }
-        else if (_p2CurrentPad >= _nbPad)
-        {
-            GameManager.instance.endMinigame(1, "p2");
-            return true;
+            if (_p1CurrentPad >= _nbPad)
+            {
+                GameManager.instance.endMinigame(1, "p1");
+                hasWin = true;
+                return true;
+            }
+            else if (_p2CurrentPad >= _nbPad)
+            {
+                GameManager.instance.endMinigame(1, "p2");
+                hasWin = true;
+                return true;
+            }
+            else return false;
         }
         else return false;
     }
