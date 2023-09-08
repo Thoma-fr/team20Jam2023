@@ -10,6 +10,13 @@ public class MG2_GameManager : MonoBehaviour
     [SerializeField] private GameObject _rockPrefab;
     [SerializeField] private int _nbPad;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip _p1Jump;
+    [SerializeField] private AudioClip _p2Jump;
+    [SerializeField] private AudioClip _p1Fall;
+    [SerializeField] private AudioClip _p2Fall;
+    private AudioSource _as;
+
     [Header("Player 1 Status")]
     [SerializeField] private bool _p1CanPlay = true;
     [SerializeField] private int _p1CurrentPad = 0;
@@ -28,6 +35,7 @@ public class MG2_GameManager : MonoBehaviour
     {
         _p1Anim = GameObject.Find("Player 1").GetComponent<Animator>();
         _p2Anim = GameObject.Find("Player 2").GetComponent<Animator>();
+        _as = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -179,9 +187,15 @@ public class MG2_GameManager : MonoBehaviour
             //Debug.Log("good input");
 
             if (player == 1)
+            {
                 _p1CurrentPad = currentPad;
+                PlaySound(_p1Jump);
+            }
             else if (player == 2)
+            {
                 _p2CurrentPad = currentPad;
+                PlaySound(_p2Jump);
+            }
         }
         else
         {
@@ -192,13 +206,14 @@ public class MG2_GameManager : MonoBehaviour
                 _p1PadList = padList;
                 StartCoroutine(WrongInput(1));
                 //Debug.Log("p1 reset");
-
+                PlaySound(_p1Fall);
             }
             else if (player == 2)
             {
                 _p2PadList = padList;
                 StartCoroutine(WrongInput(2));
                 //Debug.Log("p2 reset");
+                PlaySound(_p2Fall);
             }
         }
     }
@@ -245,12 +260,12 @@ public class MG2_GameManager : MonoBehaviour
     {
         if (_p1CurrentPad >= _nbPad)
         {
-            //Debug.Log("p1 win");
+            GameManager.instance.endMinigame(1, "p1");
             return true;
         }
         else if (_p2CurrentPad >= _nbPad)
         {
-            //Debug.Log("p2 win");
+            GameManager.instance.endMinigame(1, "p2");
             return true;
         }
         else return false;
@@ -263,4 +278,9 @@ public class MG2_GameManager : MonoBehaviour
         padList.Clear();
     }
 
+    private void PlaySound(AudioClip audio)
+    {
+        _as.pitch = Random.Range(0.8f, 1f);
+        _as.PlayOneShot(audio);
+    }
 }
