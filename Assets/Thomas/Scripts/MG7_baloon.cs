@@ -18,6 +18,7 @@ public class MG7_baloon : MonoBehaviour
     public float scalepercentage=1.10f;
     public GameObject baloon;
     public AudioClip sound;
+    private ColorKeys _colorKeys = new();
     // Start is called before the first frame update
     void Start()
     {
@@ -33,25 +34,25 @@ public class MG7_baloon : MonoBehaviour
             //z=blue,s=rouge,q=jaune
             if (playerID == 1)
             {
-                if (Input.GetKeyUp(KeyCode.Z) || Input.GetKeyUp(KeyCode.T))
+                if (Input.GetKeyDown(_colorKeys.button1Red.code) || Input.GetKeyDown(_colorKeys.button2Red.code))
                     Checkcolor(1, GameColor.Red);
-                else if (Input.GetKeyUp(KeyCode.E) || Input.GetKeyUp(KeyCode.R))
+                else if (Input.GetKeyDown(_colorKeys.button1Blue.code) || Input.GetKeyDown(_colorKeys.button2Blue.code))
                     Checkcolor(1, GameColor.Blue);
-                else if (Input.GetKeyUp(KeyCode.A))
+                else if (Input.GetKeyDown(_colorKeys.button1Yellow.code))
                     Checkcolor(1, GameColor.Yellow);
-                else if (Input.GetKeyUp(KeyCode.Y))
+                else if (Input.GetKeyDown(_colorKeys.button2Green.code))
                     Checkcolor(1, GameColor.Green);
             }
             else if (playerID == 2)
             {
                 //up arros =blue,down arrow =vert,left arrow=jaune
-                if (Input.GetKeyUp(KeyCode.S))
-                    Checkcolor(2,GameColor.Red);
-                else if (Input.GetKeyUp(KeyCode.U))
+                if (Input.GetKeyDown(_colorKeys.button4Red.code))
+                    Checkcolor(2, GameColor.Red);
+                else if (Input.GetKeyDown(_colorKeys.button3Blue.code))
                     Checkcolor(2, GameColor.Blue);
-                else if (Input.GetKeyUp(KeyCode.P) && Input.GetKeyUp(KeyCode.O))
+                else if (Input.GetKeyDown(_colorKeys.button3Yellow.code) || Input.GetKeyDown(_colorKeys.button4Yellow.code))
                     Checkcolor(2, GameColor.Yellow);
-                else if (Input.GetKeyUp(KeyCode.I) && Input.GetKeyUp(KeyCode.Q))
+                else if (Input.GetKeyDown(_colorKeys.button3Green.code) || Input.GetKeyDown(_colorKeys.button4Green.code))
                     Checkcolor(2, GameColor.Green);
             }
         }

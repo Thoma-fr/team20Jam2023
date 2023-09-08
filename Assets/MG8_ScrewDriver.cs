@@ -17,6 +17,7 @@ public class MG8_ScrewDriver : MonoBehaviour
     private int numberOfScrew;
 
     public AudioClip unscrew;
+    private ColorKeys _colorKeys = new();
     // Start is called before the first frame update
     void Start()
     {
@@ -35,41 +36,41 @@ public class MG8_ScrewDriver : MonoBehaviour
                 Debug.Log(sequence[index]);
 
                 //z=blue,s=rouge,q=jaune
-                if (Input.GetKeyDown(KeyCode.E))
+                if (Input.GetKeyDown(_colorKeys.button1Blue.code))
                     checkColor(GameColor.Blue);
-                else if (Input.GetKeyDown(KeyCode.Z))
+                else if (Input.GetKeyDown(_colorKeys.button1Red.code))
                     checkColor(GameColor.Red);
-                else if (Input.GetKeyDown(KeyCode.A))
+                else if (Input.GetKeyDown(_colorKeys.button1Yellow.code))
                     checkColor(GameColor.Yellow);
             }
             if (buttonNumber == 1)
             {
                 //t=blue,f=vert,g=rouge
-                if (Input.GetKeyDown(KeyCode.R))
+                if (Input.GetKeyDown(_colorKeys.button2Blue.code))
                     checkColor(GameColor.Blue);
-                else if (Input.GetKeyDown(KeyCode.Y))
+                else if (Input.GetKeyDown(_colorKeys.button2Green.code))
                     checkColor(GameColor.Green);
-                else if (Input.GetKeyDown(KeyCode.T))
+                else if (Input.GetKeyDown(_colorKeys.button2Red.code))
                     checkColor(GameColor.Red);
             }
             if (buttonNumber == 2)
             {
                 //up arros =blue,down arrow =vert,left arrow=jaune
-                if (Input.GetKeyDown(KeyCode.U))
+                if (Input.GetKeyDown(_colorKeys.button3Blue.code))
                     checkColor(GameColor.Blue);
-                else if (Input.GetKeyDown(KeyCode.I))
+                else if (Input.GetKeyDown(_colorKeys.button3Green.code))
                     checkColor(GameColor.Green);
-                else if (Input.GetKeyDown(KeyCode.O))
+                else if (Input.GetKeyDown(_colorKeys.button3Yellow.code))
                     checkColor(GameColor.Yellow);
             }
             if (buttonNumber == 3)
             {
                 //pavé num 5 =vert,1=rouge,2=jaune
-                if (Input.GetKeyDown(KeyCode.Q))
+                if (Input.GetKeyDown(_colorKeys.button4Green.code))
                     checkColor(GameColor.Green);
-                else if (Input.GetKeyDown(KeyCode.P))
+                else if (Input.GetKeyDown(_colorKeys.button4Yellow.code))
                     checkColor(GameColor.Yellow);
-                else if (Input.GetKeyDown(KeyCode.S))
+                else if (Input.GetKeyDown(_colorKeys.button4Red.code))
                     checkColor(GameColor.Red);
             }
         }
