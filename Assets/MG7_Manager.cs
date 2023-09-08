@@ -1,9 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using UnityEditor.VersionControl;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class MG7_Manager : MonoBehaviour
 {

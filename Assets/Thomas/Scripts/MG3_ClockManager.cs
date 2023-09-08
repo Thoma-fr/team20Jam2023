@@ -12,7 +12,7 @@ public class MG3_ClockManager : MonoBehaviour
     [SerializeField] private Vector3 startCamPos;
     [SerializeField] private float camspeed;
     private bool canInput;
-    private bool canScore=true;
+
     public AudioClip ring;
     void Start()
     {
@@ -63,29 +63,26 @@ public class MG3_ClockManager : MonoBehaviour
     }
     public void Checkcolor(int ID, GameColor col)
     {
-        if (canScore)
+        if (!canInput)
         {
-            if (!canInput)
+            if (ID == 1)
+                EndMinigame(2);
+            else
+                EndMinigame(1);
+            StopAllCoroutines();
+        }
+        else
+        {
+            if(col== colorAvailable)
+            {
+                EndMinigame(ID);
+            }
+            else
             {
                 if (ID == 1)
                     EndMinigame(2);
                 else
                     EndMinigame(1);
-                StopAllCoroutines();
-            }
-            else
-            {
-                if (col == colorAvailable)
-                {
-                    EndMinigame(ID);
-                }
-                else
-                {
-                    if (ID == 1)
-                        EndMinigame(2);
-                    else
-                        EndMinigame(1);
-                }
             }
         }
     }
@@ -127,7 +124,6 @@ public class MG3_ClockManager : MonoBehaviour
     {
         GetComponent<AudioSource>().Stop();
         GetComponent<AudioSource>().PlayOneShot(ring);
-        canScore= false;
         Sequence sequence = DOTween.Sequence();
         sequence.Append(transform.DOLocalRotate(new Vector3(0, 0, 5),0.1f,RotateMode.Fast));
         sequence.Append(transform.DOLocalRotate(new Vector3(0, 0, -5), 0.1f, RotateMode.Fast).SetLoops(-1,LoopType.Restart));

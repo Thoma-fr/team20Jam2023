@@ -99,7 +99,10 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(6);
         SceneManager.LoadScene("StartScene");
-        LoadendScene();
+        p1Score= 0;
+        p2Score=0;
+        minigamePlayed=0;
+        //LoadendScene();
     }
     public void transiAnim()
     { 
