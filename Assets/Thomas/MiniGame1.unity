@@ -1295,9 +1295,9 @@ MonoBehaviour:
   playerID: 1
   baloonParentPrefab: {fileID: 7446166929945750731, guid: 6dd7c7f3e772d944db9d6c98c0045f0e, type: 3}
   acceleration: 0.001
-  stuntTime: 0.3
+  stuntTime: 0.5
   speed: 0.35
-  SpawnSpeed: 0.8
+  SpawnSpeed: 0.75
   spawnedObject: []
 --- !u!4 &1782296299
 Transform:
@@ -1347,9 +1347,9 @@ MonoBehaviour:
   playerID: 2
   baloonParentPrefab: {fileID: 7446166929945750731, guid: 6dd7c7f3e772d944db9d6c98c0045f0e, type: 3}
   acceleration: 0.001
-  stuntTime: 0.3
+  stuntTime: 0.5
   speed: 0.35
-  SpawnSpeed: 0.8
+  SpawnSpeed: 0.75
   spawnedObject: []
 --- !u!4 &1799254935
 Transform:

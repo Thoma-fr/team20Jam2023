@@ -1017,11 +1017,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colorAvailable: 0
   DurationRandomMAx: 3
-  DurationRandomMin: 1
+  DurationRandomMin: 0
   background: {fileID: 370242723}
   cam: {fileID: 203577442}
   startCamPos: {x: 0, y: 0, z: 0}
   camspeed: 2
+  message: SHUT IT
   ring: {fileID: 8300000, guid: c1ff179dd8f18914db74755ce0f01c65, type: 3}
 --- !u!4 &2067931844
 Transform:
