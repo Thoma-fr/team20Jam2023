@@ -35,41 +35,41 @@ public class MG8_ScrewDriver : MonoBehaviour
                 Debug.Log(sequence[index]);
 
                 //z=blue,s=rouge,q=jaune
-                if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.A))
+                if (Input.GetKeyDown(KeyCode.E))
                     checkColor(GameColor.Blue);
-                else if (Input.GetKeyDown(KeyCode.S))
+                else if (Input.GetKeyDown(KeyCode.Z))
                     checkColor(GameColor.Red);
-                else if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.Q))
+                else if (Input.GetKeyDown(KeyCode.A))
                     checkColor(GameColor.Yellow);
             }
             if (buttonNumber == 1)
             {
                 //t=blue,f=vert,g=rouge
-                if (Input.GetKeyDown(KeyCode.T))
+                if (Input.GetKeyDown(KeyCode.R))
                     checkColor(GameColor.Blue);
-                else if (Input.GetKeyDown(KeyCode.F))
+                else if (Input.GetKeyDown(KeyCode.Y))
                     checkColor(GameColor.Green);
-                else if (Input.GetKeyDown(KeyCode.G))
+                else if (Input.GetKeyDown(KeyCode.T))
                     checkColor(GameColor.Red);
             }
             if (buttonNumber == 2)
             {
                 //up arros =blue,down arrow =vert,left arrow=jaune
-                if (Input.GetKeyDown(KeyCode.UpArrow))
+                if (Input.GetKeyDown(KeyCode.U))
                     checkColor(GameColor.Blue);
-                else if (Input.GetKeyDown(KeyCode.DownArrow))
+                else if (Input.GetKeyDown(KeyCode.I))
                     checkColor(GameColor.Green);
-                else if (Input.GetKeyDown(KeyCode.LeftArrow))
+                else if (Input.GetKeyDown(KeyCode.O))
                     checkColor(GameColor.Yellow);
             }
             if (buttonNumber == 3)
             {
                 //pavé num 5 =vert,1=rouge,2=jaune
-                if (Input.GetKeyDown(KeyCode.O))
+                if (Input.GetKeyDown(KeyCode.P))
                     checkColor(GameColor.Green);
-                else if (Input.GetKeyDown(KeyCode.K))
+                else if (Input.GetKeyDown(KeyCode.S))
                     checkColor(GameColor.Yellow);
-                else if (Input.GetKeyDown(KeyCode.L))
+                else if (Input.GetKeyDown(KeyCode.Q))
                     checkColor(GameColor.Red);
             }
         }
