@@ -2194,6 +2194,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GamaManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7941820917357830174, guid: 92d06f223a67cbf408b6967155fcb337, type: 3}
+      propertyPath: numberToWin
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9082327302943163578, guid: 92d06f223a67cbf408b6967155fcb337, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.1915356

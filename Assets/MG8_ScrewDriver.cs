@@ -92,10 +92,12 @@ public class MG8_ScrewDriver : MonoBehaviour
                     if (playerID == 1)
                     {
                         MG8_Manager.instance.screwp1++;
+                        screw.GetComponent<Rigidbody2D>().isKinematic=false;
                     }
                     else
                     {
                         MG8_Manager.instance.screwp2++;
+                        screw.GetComponent<Rigidbody2D>().isKinematic = false;
                     }
                     canInput = false;
                 }
