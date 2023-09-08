@@ -333,7 +333,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Z
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1030,7 +1030,7 @@ MonoBehaviour:
   rideauGauche: {fileID: 3391327416832720229}
   rideauDroit: {fileID: 5808925106179920563}
   winName: 
-  numberToWin: 8
+  numberToWin: 7
 --- !u!82 &2830879966787394244
 AudioSource:
   m_ObjectHideFlags: 0

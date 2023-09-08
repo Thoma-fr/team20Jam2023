@@ -1016,12 +1016,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colorAvailable: 0
-  DurationRandomMAx: 1
-  DurationRandomMin: 5
+  DurationRandomMAx: 3
+  DurationRandomMin: 1
   background: {fileID: 370242723}
   cam: {fileID: 203577442}
   startCamPos: {x: 0, y: 0, z: 0}
-  camspeed: 1
+  camspeed: 2
   ring: {fileID: 8300000, guid: c1ff179dd8f18914db74755ce0f01c65, type: 3}
 --- !u!4 &2067931844
 Transform:

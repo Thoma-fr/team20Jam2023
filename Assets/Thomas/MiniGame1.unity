@@ -1236,9 +1236,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 1048662575}
-  startTime: 12
+  startTime: 10
   message: SHOOT THEM
-  timeBeforeStart: 2
+  timeBeforeStart: 0
   spawner1: {fileID: 1782296297}
   spawner2: {fileID: 1799254933}
 --- !u!4 &1448965370
@@ -1297,7 +1297,7 @@ MonoBehaviour:
   acceleration: 0.001
   stuntTime: 0.3
   speed: 0.35
-  SpawnSpeed: 1.25
+  SpawnSpeed: 0.8
   spawnedObject: []
 --- !u!4 &1782296299
 Transform:
@@ -1349,7 +1349,7 @@ MonoBehaviour:
   acceleration: 0.001
   stuntTime: 0.3
   speed: 0.35
-  SpawnSpeed: 1.25
+  SpawnSpeed: 0.8
   spawnedObject: []
 --- !u!4 &1799254935
 Transform:
