@@ -12,6 +12,7 @@ public class MG7_Manager : MonoBehaviour
     public TextMeshProUGUI timerText;
     [SerializeField] private int startTime;
     bool isfinished;
+    bool hasWin;
     void Awake()
     {
         timerText.text = startTime.ToString();
@@ -43,33 +44,38 @@ public class MG7_Manager : MonoBehaviour
             StartCoroutine(countdown());
     }
     public void Update()
-    {
-        if (!isfinished)
+    {   if (!hasWin)
         {
-            if (scorep1 >= ScoreNeeded)
+            if (!isfinished)
             {
-                GameManager.instance.endMinigame(1, "p1");
-                isfinished = true;
-            }
-            else if (scorep2 >= ScoreNeeded)
-            {
-                isfinished = true;
-                GameManager.instance.endMinigame(1, "p2");
-            }
-        }
-        else
-        {
-            if(scorep1 > scorep2)
-            {
-                GameManager.instance.endMinigame(1, "p1");
-            }
-            else if(scorep2 < scorep1)
-            {
-                GameManager.instance.endMinigame(1, "p2");
+                if (scorep1 >= ScoreNeeded)
+                {
+                    GameManager.instance.endMinigame(1, "p1");
+                    isfinished = true;
+                }
+                else if (scorep2 >= ScoreNeeded)
+                {
+                    isfinished = true;
+                    GameManager.instance.endMinigame(1, "p2");
+                }
             }
             else
             {
-                GameManager.instance.endMinigame(0, "null");
+                if (scorep1 > scorep2)
+                {
+                    GameManager.instance.endMinigame(1, "p1");
+                    hasWin = true;
+                }
+                else if (scorep2 < scorep1)
+                {
+                    GameManager.instance.endMinigame(1, "p2");
+                    hasWin = true;
+                }
+                else
+                {
+                    GameManager.instance.endMinigame(0, "null");
+                    hasWin = true;
+                }
             }
         }
     }

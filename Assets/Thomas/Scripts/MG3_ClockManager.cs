@@ -15,6 +15,7 @@ public class MG3_ClockManager : MonoBehaviour
     public string message;
     public AudioClip ring;
     private ColorKeys _colorKeys = new();
+    private bool canMove;
     void Start()
     {
         startCamPos = cam.transform.position;
@@ -26,14 +27,16 @@ public class MG3_ClockManager : MonoBehaviour
     }
     private IEnumerator delay()
     {
+        DOTween.To(() => GameManager.instance.GetComponent<AudioLowPassFilter>().cutoffFrequency, x => GameManager.instance.GetComponent<AudioLowPassFilter>().cutoffFrequency = x, 1000, 1);
         yield return new WaitForSeconds(GameManager.instance.timeBeforestart);
-        duration = Random.Range(DurationRandomMAx, DurationRandomMin);
+        duration = Random.Range(DurationRandomMin, DurationRandomMAx);
+        canMove = true;
         DOTween.To(() => GameManager.instance.GetComponent<AudioLowPassFilter>().cutoffFrequency, x => GameManager.instance.GetComponent<AudioLowPassFilter>().cutoffFrequency = x, 10, duration);
         StartCoroutine(ticktack());
     }
     void Update()
     {
-        if (!canInput)
+        if (!canInput&& canMove)
         {
             cam.transform.position = new Vector3(cam.transform.position.x, cam.transform.position.y, cam.transform.position.z + camspeed * Time.deltaTime);
         }

@@ -136,6 +136,10 @@ public class GameManager : MonoBehaviour
         messageText.text = message;
         mySequence.Append(messageObject.transform.parent.DOMove(messagepos2.transform.position,0.5f).SetEase(Ease.OutBounce));
         mySequence.AppendInterval(2f);
+        if(minigamePlayed<4)
+        {
+            mySequence.AppendInterval(2f);
+        }
         mySequence.Append(messageObject.transform.parent.DOMove(messagepos1.transform.position, 0.5f));
     }
 
