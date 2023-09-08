@@ -1920,8 +1920,8 @@ MonoBehaviour:
 
     WIN'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: dc74d3f196cfca4468a525857c8675b1, type: 2}
+  m_sharedMaterial: {fileID: 8826247305430758826, guid: dc74d3f196cfca4468a525857c8675b1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
