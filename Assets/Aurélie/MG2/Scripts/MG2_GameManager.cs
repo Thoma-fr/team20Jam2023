@@ -45,22 +45,22 @@ public class MG2_GameManager : MonoBehaviour
         {
             if (Input.GetKeyDown(_colorKeys.button1Blue.code) || Input.GetKeyDown(_colorKeys.button2Blue.code))
             {
-                HandleColorInput(GameColor.Blue, 1);
+                HandleColorInput(CustomColor.Blue, 1);
                 //Debug.Log("p1 press blue");
             }
             else if (Input.GetKeyDown(_colorKeys.button1Red.code) || Input.GetKeyDown(_colorKeys.button2Red.code))
             {
-                HandleColorInput(GameColor.Red, 1);
+                HandleColorInput(CustomColor.Red, 1);
                 //Debug.Log("p1 press red");
             }
             else if (Input.GetKeyDown(_colorKeys.button1Yellow.code))
             {
-                HandleColorInput(GameColor.Yellow, 1);
+                HandleColorInput(CustomColor.Yellow, 1);
                 //Debug.Log("p1 press yellow");
             }
             else if (Input.GetKeyDown(_colorKeys.button2Green.code))
             {
-                HandleColorInput(GameColor.Green, 1);
+                HandleColorInput(CustomColor.Green, 1);
                 //Debug.Log("p1 press green");
             }
         }
@@ -68,27 +68,27 @@ public class MG2_GameManager : MonoBehaviour
         if (_p2CanPlay)
         {
             if (Input.GetKeyDown(_colorKeys.button3Blue.code))
-                HandleColorInput(GameColor.Blue, 2);
+                HandleColorInput(CustomColor.Blue, 2);
             else if (Input.GetKeyDown(_colorKeys.button3Green.code) || Input.GetKeyDown(_colorKeys.button4Green.code))
-                HandleColorInput(GameColor.Green, 2);
+                HandleColorInput(CustomColor.Green, 2);
             else if (Input.GetKeyDown(_colorKeys.button3Yellow.code) || Input.GetKeyDown(_colorKeys.button4Yellow.code))
-                HandleColorInput(GameColor.Yellow, 2);
+                HandleColorInput(CustomColor.Yellow, 2);
             else if (Input.GetKeyDown(_colorKeys.button4Red.code))
-                HandleColorInput(GameColor.Red, 2);
+                HandleColorInput(CustomColor.Red, 2);
         }
     }
 
     private void GeneratePadsP1()
     {
-        GameColor previousColor = GameColor.Green;
+        CustomColor previousColor = CustomColor.Green;
         bool canRepeat = true;
         SpawnRock(new Vector3(-3, -3, 0), 1);
-        SpawnPad(GameColor.Green, new Vector3(-3, 0, 0), 1);
+        SpawnPad(CustomColor.Green, new Vector3(-3, 0, 0), 1);
 
         float posY = 3;
         for (int i = 1; i < _nbPad; i++)
         {
-            GameColor currentColor = GetRandomColor();
+            CustomColor currentColor = GetRandomColor();
             //Debug.Log(currentColor);
             //Debug.Log(canRepeat);
 
@@ -111,15 +111,15 @@ public class MG2_GameManager : MonoBehaviour
 
     private void GeneratePadsP2()
     {
-        GameColor previousColor = GameColor.Green;
+        CustomColor previousColor = CustomColor.Green;
         bool canRepeat = true;
         SpawnRock(new Vector3(3, -3, 0), 2);
-        SpawnPad(GameColor.Green, new Vector3(3, 0, 0), 2);
+        SpawnPad(CustomColor.Green, new Vector3(3, 0, 0), 2);
 
         float posY = 3;
         for (int i = 1; i < _nbPad; i++)
         {
-            GameColor currentColor = GetRandomColor();
+            CustomColor currentColor = GetRandomColor();
 
             if (!canRepeat && previousColor == currentColor)
             {
@@ -135,7 +135,7 @@ public class MG2_GameManager : MonoBehaviour
         }
     }
 
-    private void SpawnPad(GameColor color, Vector3 pos, int player)
+    private void SpawnPad(CustomColor color, Vector3 pos, int player)
     {
         GameObject pad = Instantiate(GetRandomPrefab(color), pos, Quaternion.identity);
         if (player == 1)
@@ -152,18 +152,18 @@ public class MG2_GameManager : MonoBehaviour
             _p2PadList.Add(rock);
     }
 
-    private GameObject GetRandomPrefab(GameColor color)
+    private GameObject GetRandomPrefab(CustomColor color)
     {
         int prefabIndex = (int)color * 2 + Random.Range(0, 2);
         return _padPrefab[prefabIndex];
     }
 
-    private GameColor GetRandomColor()
+    private CustomColor GetRandomColor()
     {
-        return (GameColor)Random.Range(0, 4);
+        return (CustomColor)Random.Range(0, 4);
     }
 
-    private void HandleColorInput(GameColor color, int player)
+    private void HandleColorInput(CustomColor color, int player)
     {
         int currentPad = (player == 1) ? _p1CurrentPad: _p2CurrentPad;
         List<GameObject> padList = (player == 1) ? _p1PadList : _p2PadList;

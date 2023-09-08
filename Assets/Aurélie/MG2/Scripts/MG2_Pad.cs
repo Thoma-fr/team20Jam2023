@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class MG2_Pad : MonoBehaviour
 {
-    public GameColor color;
+    public CustomColor color;
 }
