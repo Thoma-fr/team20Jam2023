@@ -1012,7 +1012,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colorAvailable: 0
-  DurationRandomMAx: 2
+  DurationRandomMAx: 1
   DurationRandomMin: 5
   background: {fileID: 370242723}
   cam: {fileID: 203577442}
