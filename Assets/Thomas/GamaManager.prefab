@@ -1023,11 +1023,14 @@ MonoBehaviour:
   - MiniGame3
   - MiniGame1
   - MiniGame7
+  - MiniGame2
   curentIndex: 0
   MinigamesDones: 0
   timeBeforestart: 3
   rideauGauche: {fileID: 3391327416832720229}
   rideauDroit: {fileID: 5808925106179920563}
+  winName: 
+  numberToWin: 8
 --- !u!82 &2830879966787394244
 AudioSource:
   m_ObjectHideFlags: 0

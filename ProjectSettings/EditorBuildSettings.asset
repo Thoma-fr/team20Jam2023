@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Thomas/StartScene.unity
     guid: e7ecd8af9edbf2c499fb59cd19b69075
+  - enabled: 1
+    path: "Assets/Aur\xE9lie/MG2/MiniGame2.unity"
+    guid: 754d96c6a452cdf42b9e1c75416a715e
   m_configObjects: {}
