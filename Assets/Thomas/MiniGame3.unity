@@ -1016,8 +1016,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colorAvailable: 0
-  DurationRandomMAx: 3
-  DurationRandomMin: 0
+  DurationRandomMAx: 5
+  DurationRandomMin: 1
   background: {fileID: 370242723}
   cam: {fileID: 203577442}
   startCamPos: {x: 0, y: 0, z: 0}
