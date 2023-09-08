@@ -3,6 +3,7 @@ using TMPro;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using System.Collections;
 
 public enum GameColor
 {
@@ -31,6 +32,8 @@ public class GameManager : MonoBehaviour
     public float timeBeforestart=3;
 
     public GameObject rideauGauche, rideauDroit;
+    public string winName;
+    public int numberToWin = 8;
     private void Awake()
     {
         if (instance == null)
@@ -64,10 +67,42 @@ public class GameManager : MonoBehaviour
                 break;
         }
         MinigamesDones++;
-        transiAnim();
+        if (p1Score >= numberToWin)
+        {
+            endScene("Player 1 WIN");
+        }
+        else if(p2Score >= numberToWin)
+        {
+            endScene("Player 2 WIN");
+        }
+        else
+            transiAnim();
+
+    }
+    public void endScene(string  name) 
+    {
+        winName=name;
+        Sequence sequence = DOTween.Sequence();
+        sequence.Append(rideauGauche.transform.DOLocalMove(new Vector3(-436, -102, 0), 1));
+        sequence.Insert(0.2f, rideauDroit.transform.DOLocalMove(new Vector3(456, -102, 0), 1).OnComplete(() => LoadendScene()));
+
+
+        sequence.Append(rideauGauche.transform.DOLocalMove(new Vector3(-921, -102, 0), 1));
+        sequence.Insert(1.2f, rideauDroit.transform.DOLocalMove(new Vector3(924, -102, 0), 1));
+    }
+    public void LoadendScene()
+    {
+        SceneManager.LoadScene("EndScene");
+        StartCoroutine(LoadFirstScene());
+    }
+    private IEnumerator LoadFirstScene() 
+    {
+        yield return new WaitForSeconds(6);
+        SceneManager.LoadScene("StartScene");
+        LoadendScene();
     }
     public void transiAnim()
-    {
+    { 
         Sequence sequence = DOTween.Sequence();
         sequence.Append(rideauGauche.transform.DOLocalMove(new Vector3(-436, -102, 0), 1));
         sequence.Insert(0.2f,rideauDroit.transform.DOLocalMove(new Vector3(456, -102, 0), 1).OnComplete(()=> ChangeScene()));
@@ -90,6 +125,7 @@ public class GameManager : MonoBehaviour
         curentIndex = nextIndex;
         SceneManager.LoadScene(scenesNames[nextIndex]);
     }
+
     public void DisplayMessage(string message)
     {
         TextMeshProUGUI messageText= messageObject.GetComponent<TextMeshProUGUI>();

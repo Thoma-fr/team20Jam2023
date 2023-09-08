@@ -24,6 +24,12 @@ public class MG1_Manager : MonoBehaviour
         GameManager.instance.DisplayMessage(message);
         StartCoroutine(delay());
         startTime -= GameManager.instance.MinigamesDones;
+        if(GameManager.instance.MinigamesDones>5)
+        {
+            timeBeforeStart = 1f;
+        }
+        if(startTime < 4)
+            startTime = 4;
         audioSource = GameManager.instance.GetComponent<AudioSource>();
     }
 

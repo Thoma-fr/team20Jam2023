@@ -65,11 +65,11 @@ public class MG8_ScrewDriver : MonoBehaviour
             if (buttonNumber == 3)
             {
                 //pavé num 5 =vert,1=rouge,2=jaune
-                if (Input.GetKeyDown(KeyCode.P))
+                if (Input.GetKeyDown(KeyCode.Q))
                     checkColor(GameColor.Green);
-                else if (Input.GetKeyDown(KeyCode.S))
+                else if (Input.GetKeyDown(KeyCode.P))
                     checkColor(GameColor.Yellow);
-                else if (Input.GetKeyDown(KeyCode.Q))
+                else if (Input.GetKeyDown(KeyCode.S))
                     checkColor(GameColor.Red);
             }
         }

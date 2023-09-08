@@ -45,13 +45,13 @@ public class MG7_baloon : MonoBehaviour
             else if (playerID == 2)
             {
                 //up arros =blue,down arrow =vert,left arrow=jaune
-                if (Input.GetKeyUp(KeyCode.Q))
+                if (Input.GetKeyUp(KeyCode.S))
                     Checkcolor(2,GameColor.Red);
                 else if (Input.GetKeyUp(KeyCode.U))
                     Checkcolor(2, GameColor.Blue);
-                else if (Input.GetKeyUp(KeyCode.S) && Input.GetKeyUp(KeyCode.O))
+                else if (Input.GetKeyUp(KeyCode.P) && Input.GetKeyUp(KeyCode.O))
                     Checkcolor(2, GameColor.Yellow);
-                else if (Input.GetKeyUp(KeyCode.I) && Input.GetKeyUp(KeyCode.P))
+                else if (Input.GetKeyUp(KeyCode.I) && Input.GetKeyUp(KeyCode.Q))
                     Checkcolor(2, GameColor.Green);
             }
         }

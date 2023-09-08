@@ -45,13 +45,13 @@ public class MG1_Sequence : MonoBehaviour
 
         if (canInput&& spawnedObject.Count>0 && playerID==2)
         {
-            if (Input.GetKeyUp(KeyCode.Q))//q
+            if (Input.GetKeyUp(KeyCode.S))//q
                 spawnedObject[0].GetComponent<MG1_BaloonParent>().Checkcolor(MG1_BaloonType.Red);
             else if (Input.GetKeyUp(KeyCode.U))
                 spawnedObject[0].GetComponent<MG1_BaloonParent>().Checkcolor(MG1_BaloonType.Blue);
-            else if (Input.GetKeyUp(KeyCode.S)&& Input.GetKeyUp(KeyCode.O))
+            else if (Input.GetKeyUp(KeyCode.P)&& Input.GetKeyUp(KeyCode.O))
                 spawnedObject[0].GetComponent<MG1_BaloonParent>().Checkcolor(MG1_BaloonType.Yellow);
-            else if (Input.GetKeyUp(KeyCode.I)&& Input.GetKeyUp(KeyCode.P))//p
+            else if (Input.GetKeyUp(KeyCode.I)&& Input.GetKeyUp(KeyCode.A))//p
                 spawnedObject[0].GetComponent<MG1_BaloonParent>().Checkcolor(MG1_BaloonType.Green);
         }
         if (canInput && spawnedObject.Count > 0 && playerID == 1)
@@ -60,7 +60,7 @@ public class MG1_Sequence : MonoBehaviour
                 spawnedObject[0].GetComponent<MG1_BaloonParent>().Checkcolor(MG1_BaloonType.Red);
             else if (Input.GetKeyUp(KeyCode.E) || Input.GetKeyUp(KeyCode.R))
                 spawnedObject[0].GetComponent<MG1_BaloonParent>().Checkcolor(MG1_BaloonType.Blue);
-            else if (Input.GetKeyUp(KeyCode.A))
+            else if (Input.GetKeyUp(KeyCode.Q))
                 spawnedObject[0].GetComponent<MG1_BaloonParent>().Checkcolor(MG1_BaloonType.Yellow);
             else if (Input.GetKeyUp(KeyCode.Y))
                 spawnedObject[0].GetComponent<MG1_BaloonParent>().Checkcolor(MG1_BaloonType.Green);

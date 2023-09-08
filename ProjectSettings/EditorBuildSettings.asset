@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Thomas/MiniGame7.unity
     guid: 55769a8e7c11596479fd7698d051f3bb
+  - enabled: 1
+    path: Assets/Thomas/EndScene.unity
+    guid: f24255b8ca84288438dcb233f68003ca
   m_configObjects: {}
