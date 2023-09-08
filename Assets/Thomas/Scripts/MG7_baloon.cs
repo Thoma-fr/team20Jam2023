@@ -33,40 +33,30 @@ public class MG7_baloon : MonoBehaviour
             //z=blue,s=rouge,q=jaune
             if (playerID == 1)
             {
-                if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.A))
-                    checkColor(GameColor.Blue);
-                else if (Input.GetKeyDown(KeyCode.S))
-                    checkColor(GameColor.Red);
-                else if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.A))
-                    checkColor(GameColor.Yellow);
-                //t=blue,f=vert,g=rouge
-                if (Input.GetKeyDown(KeyCode.T))
-                    checkColor(GameColor.Blue);
-                else if (Input.GetKeyDown(KeyCode.F))
-                    checkColor(GameColor.Green);
-                else if (Input.GetKeyDown(KeyCode.G))
-                    checkColor(GameColor.Red);
+                if (Input.GetKeyUp(KeyCode.Z) || Input.GetKeyUp(KeyCode.T))
+                    Checkcolor(1, GameColor.Red);
+                else if (Input.GetKeyUp(KeyCode.E) || Input.GetKeyUp(KeyCode.R))
+                    Checkcolor(1, GameColor.Blue);
+                else if (Input.GetKeyUp(KeyCode.A))
+                    Checkcolor(1, GameColor.Yellow);
+                else if (Input.GetKeyUp(KeyCode.Y))
+                    Checkcolor(1, GameColor.Green);
             }
             else if (playerID == 2)
             {
                 //up arros =blue,down arrow =vert,left arrow=jaune
-                if (Input.GetKeyDown(KeyCode.UpArrow))
-                    checkColor(GameColor.Blue);
-                else if (Input.GetKeyDown(KeyCode.DownArrow))
-                    checkColor(GameColor.Green);
-                else if (Input.GetKeyDown(KeyCode.LeftArrow))
-                    checkColor(GameColor.Yellow);
-                //pavé num 5 =vert,1=rouge,2=jaune
-                if (Input.GetKeyDown(KeyCode.O))
-                    checkColor(GameColor.Green);
-                else if (Input.GetKeyDown(KeyCode.K))
-                    checkColor(GameColor.Yellow);
-                else if (Input.GetKeyDown(KeyCode.L))
-                    checkColor(GameColor.Red);
+                if (Input.GetKeyUp(KeyCode.Q))
+                    Checkcolor(2,GameColor.Red);
+                else if (Input.GetKeyUp(KeyCode.U))
+                    Checkcolor(2, GameColor.Blue);
+                else if (Input.GetKeyUp(KeyCode.S) && Input.GetKeyUp(KeyCode.O))
+                    Checkcolor(2, GameColor.Yellow);
+                else if (Input.GetKeyUp(KeyCode.I) && Input.GetKeyUp(KeyCode.P))
+                    Checkcolor(2, GameColor.Green);
             }
         }
     }
-    public void checkColor(GameColor col)
+    public void Checkcolor(int p,GameColor col)
     {
         Debug.Log("check");
         if (pompeSR.sprite == pompeSprite1)

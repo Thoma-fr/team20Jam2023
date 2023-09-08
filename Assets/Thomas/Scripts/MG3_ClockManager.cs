@@ -38,23 +38,23 @@ public class MG3_ClockManager : MonoBehaviour
         else
             cam.transform.position = startCamPos;
 
-        if (Input.GetKeyUp(KeyCode.Z) || Input.GetKeyUp(KeyCode.W))
-            Checkcolor(1, GameColor.Red);
-        else if (Input.GetKeyUp(KeyCode.S))
-            Checkcolor(1, GameColor.Blue);
-        else if (Input.GetKeyUp(KeyCode.Q) || Input.GetKeyUp(KeyCode.A))
-            Checkcolor(1, GameColor.Yellow);
-        else if (Input.GetKeyUp(KeyCode.D))
-            Checkcolor(1, GameColor.Green);
-
-        if (Input.GetKeyUp(KeyCode.UpArrow))
+        if (Input.GetKeyUp(KeyCode.Q))
             Checkcolor(2, GameColor.Red);
-        else if (Input.GetKeyUp(KeyCode.DownArrow))
-            Checkcolor(2,GameColor.Blue);
-        else if (Input.GetKeyUp(KeyCode.LeftArrow))
-            Checkcolor(2,GameColor.Yellow);
-        else if (Input.GetKeyUp(KeyCode.RightArrow))
+        else if (Input.GetKeyUp(KeyCode.U))
+            Checkcolor(2, GameColor.Blue);
+        else if (Input.GetKeyUp(KeyCode.S) && Input.GetKeyUp(KeyCode.O))
+            Checkcolor(2, GameColor.Yellow);
+        else if (Input.GetKeyUp(KeyCode.I) && Input.GetKeyUp(KeyCode.P))
             Checkcolor(2, GameColor.Green);
+
+        if (Input.GetKeyUp(KeyCode.Z) || Input.GetKeyUp(KeyCode.T))
+            Checkcolor(1, GameColor.Red);
+        else if (Input.GetKeyUp(KeyCode.E) || Input.GetKeyUp(KeyCode.R))
+            Checkcolor(1,GameColor.Blue);
+        else if (Input.GetKeyUp(KeyCode.A))
+            Checkcolor(1,GameColor.Yellow);
+        else if (Input.GetKeyUp(KeyCode.Y))
+            Checkcolor(1, GameColor.Green);
     }
     public void animCadran()
     {
